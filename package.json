@@ -1,0 +1,21 @@
+{
+  "name": "webpack-boirtemplate",
+  "version": "1.0.0",
+  "description": "Simple boilerplate para weback y webpack-dev-server",
+  "main": "src/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [
+    "boilerplate",
+    "webpack",
+    "webpack-dev-server",
+    "webpack configuration"
+  ],
+  "author": "Hernan Castilla",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^3.8.1"
+  }
+}
