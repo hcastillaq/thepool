@@ -1,10 +1,13 @@
 const webpack = require('webpack');
 const config = 
 {
-  entry:'./src/js/app.js',
+  entry:
+  {
+    one: './src/js/app.js',
+  },
   output:{
     path: __dirname + '/dist/js/',
-    filename: 'bundle.js'
+    filename: '[name].js'
   }
 }
 module.exports  = config;
