@@ -22,6 +22,11 @@ const config =
           }
         ],
         exclude:/node_modules/
+      },
+      {
+        test:/\.sass$/,
+        use:['style-loader', 'css-loader', 'sass-loader'],
+        exclude:/node_modules/
       }
     ]
   },

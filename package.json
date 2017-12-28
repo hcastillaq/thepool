@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "watch": "webpack --watch",
-    "server" : "webpack-dev-server"
+    "server": "webpack-dev-server"
   },
   "keywords": [
     "boilerplate",
@@ -24,6 +24,10 @@
     "webpack": "^3.8.1"
   },
   "dependencies": {
+    "css-loader": "^0.28.7",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
     "webpack-dev-server": "^2.9.7"
   }
 }
