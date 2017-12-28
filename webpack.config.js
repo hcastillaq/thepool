@@ -3,7 +3,7 @@ const config =
 {
   entry:
   {
-    one: './src/js/app.js',
+    bundle: './src/js/app.js',
   },
   output:{
     path: __dirname + '/dist/js/',
@@ -24,6 +24,12 @@ const config =
         exclude:/node_modules/
       }
     ]
+  },
+  devServer:{
+    contentBase: __dirname + '/',
+    port: 9000,
+    compress: true,
+    open: true
   }
 }
 module.exports  = config;
