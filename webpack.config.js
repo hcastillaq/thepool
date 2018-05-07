@@ -1,13 +1,24 @@
 const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
+const extractSass = new ExtractTextPlugin({
+  filename:  (getPath) => {
+    return getPath('css/[name].css').replace('css/js', 'css');
+  },
+  allChunks: true
+});
+
 const config = 
 {
   entry:
   {
-    bundle: './src/js/app.js',
+    bundle: './src/js/app.js'
   },
   output:{
-    path: __dirname + '/dist/js/',
-    filename: '[name].js'
+    path: __dirname + '/dist',
+    chunkFilename: './js/chunks/[name].[chunkhash].js',
+    filename: './js/[name].js'
   },
   module:{
     rules:[
@@ -24,17 +35,36 @@ const config =
         exclude:/node_modules/
       },
       {
-        test:/\.sass$/,
-        use:['style-loader', 'css-loader', 'sass-loader'],
-        exclude:/node_modules/
+        test: /\.sass$/,
+        use: extractSass.extract({
+          use: [
+            {
+              loader: "css-loader",
+              options: { minimize: true }
+            },
+            {
+              loader: "sass-loader"
+            }
+          ],
+          fallback: "style-loader"
+        }),
+        exclude: /node_modules/
       }
     ]
   },
   devServer:{
     contentBase: __dirname + '/',
     port: 9000,
+    host:'localhost',
     compress: true,
     open: true
-  }
+  },
+  plugins:[
+    extractSass,
+    new VueLoaderPlugin(),
+    //new UglifyJsPlugin({
+      //parallel: true
+    //})
+  ],
 }
 module.exports  = config;
