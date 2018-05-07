@@ -61,10 +61,9 @@ const config =
   },
   plugins:[
     extractSass,
-    new VueLoaderPlugin(),
-    //new UglifyJsPlugin({
-      //parallel: true
-    //})
+    new UglifyJsPlugin({
+      parallel: true
+    })
   ],
 }
 module.exports  = config;
