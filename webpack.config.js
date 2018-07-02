@@ -13,10 +13,10 @@ const config =
 {
   entry:
   {
-    bundle: './src/js/app.js'
+    bundle: './src/index.js'
   },
   output:{
-    path: __dirname + '/dist',
+    path: __dirname + '/public',
     chunkFilename: './js/chunks/[name].[chunkhash].js',
     filename: './js/[name].js'
   },
@@ -28,7 +28,7 @@ const config =
           {
             loader:'babel-loader',
             options: {
-              presets: ['babel-preset-env']
+              presets: ['babel-preset-env', 'babel-preset-react']
             }
           }
         ],
