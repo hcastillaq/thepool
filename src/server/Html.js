@@ -10,7 +10,7 @@ export default (obj) => {
         <body>
           <div id="root">${obj.body}</div>
 
-          <script src="/static/js/bundle.js" async></script>
+          <script src="/static/js/bundle.js" async defer ></script>
         </body>
       </html>
     `

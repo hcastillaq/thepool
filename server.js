@@ -4,7 +4,8 @@ import fs from 'fs';
 import Path from 'path';
 import Html from './src/server/Html';
 import React from 'react';
-import { renderToString } from 'react-dom/server'
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router';
 
 import App from './src/shared/App';
 
@@ -26,11 +27,19 @@ const server = Hapi.server({
 
 server.route({
   method:'GET',
-  path:'/',
+  path:"/{path*}",
   handler: (request, h) =>{
+    let uri = request.path;
+    const context = {};
+    const html = renderToString(
+      <StaticRouter location="/" context={context}>
+        <App />
+      </StaticRouter>,
+    );
+
     let obj = {
       title: 'Server test',
-      body: renderToString( <App/> )
+      body: html
     }
     return Html(obj);
   }
