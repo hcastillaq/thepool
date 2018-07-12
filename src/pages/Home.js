@@ -2,6 +2,7 @@ import React from 'react';
 import store from './../store';
 import addSearchData from './../actions/SearchArctions';
 import Search from './../components/Search';
+import _ from 'lodash';
 
 class Home extends React.Component{
 	constructor(props)
@@ -38,14 +39,18 @@ class ItemsContianer extends React.Component{
 	constructor(props)
 	{
 		super(props);
-
-		this.state = { items:  this.initialData ? this.initialData : [] };
+		
+		if(_.isEmpty(store.getState().searchResults) && this.props.initialData)
+		{
+			this.state = { items: this.props.initialData };
+		}	else{
+			this.state = { items: store.getState().searchResults };
+		}
 		this.storeSubscription;
 	}
 	
 	componentDidMount()
 	{	
-		
 		this.storeSubscription = store.subscribe(() => {
 			this.setState( { items: store.getState().searchResults } )
 		});
