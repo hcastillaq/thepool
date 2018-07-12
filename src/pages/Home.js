@@ -65,7 +65,19 @@ class ItemsContianer extends React.Component{
 	{
 		const items = [];
 		this.state.items.forEach(item => {
-			items.push(<img key={item.id}  src={item.previewURL} />)
+			items.push(
+				<div key={item.id}>
+					<img   src={item.previewURL} />
+					<p>
+						<strong>User:</strong>
+						{item.user}
+					</p>
+					<p>
+						<strong>Tags:</strong>
+						{item.tags}
+					</p>
+				</div>
+			)
 		});
 		return(
 			<div>

@@ -31452,7 +31452,31 @@ var ItemsContianer = function (_React$Component2) {
 		value: function render() {
 			var items = [];
 			this.state.items.forEach(function (item) {
-				items.push(_react2.default.createElement('img', { key: item.id, src: item.previewURL }));
+				items.push(_react2.default.createElement(
+					'div',
+					{ key: item.id },
+					_react2.default.createElement('img', { src: item.previewURL }),
+					_react2.default.createElement(
+						'p',
+						null,
+						_react2.default.createElement(
+							'strong',
+							null,
+							'User:'
+						),
+						item.user
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						_react2.default.createElement(
+							'strong',
+							null,
+							'Tags:'
+						),
+						item.tags
+					)
+				));
 			});
 			return _react2.default.createElement(
 				'div',
