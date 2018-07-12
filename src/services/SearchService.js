@@ -4,6 +4,8 @@ import { debounceTime } from 'rxjs/operators/debounceTime';
 import { switchMap } from 'rxjs/operators/switchMap';
 import store from './../store';
 import {addSearchData} from './../actions/SearchArctions';
+import _ from 'lodash';
+
 
 let searchServiceInstace = null;
 
@@ -12,7 +14,7 @@ class SearchService {
   { 
     this.subject = new Subject();
 
-    if(searchServiceInstace == null)
+    if(_.isNull(searchServiceInstace))
     {
       this.searchServiceInstace = this;
     }

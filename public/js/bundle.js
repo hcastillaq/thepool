@@ -8438,6 +8438,8 @@ var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+window._ = __webpack_require__(315);
+
 (0, _reactDom.hydrate)(_react2.default.createElement(
   _reactRouterDom.BrowserRouter,
   null,
@@ -31596,6 +31598,10 @@ var _store2 = _interopRequireDefault(_store);
 
 var _SearchArctions = __webpack_require__(89);
 
+var _lodash = __webpack_require__(315);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31608,7 +31614,7 @@ var SearchService = function () {
 
     this.subject = new _rxjs.Subject();
 
-    if (searchServiceInstace == null) {
+    if (_lodash2.default.isNull(searchServiceInstace)) {
       this.searchServiceInstace = this;
     }
 

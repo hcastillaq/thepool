@@ -6,16 +6,10 @@ import Html from './src/server/Html';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
-import axios from 'axios';
 import App from './src/shared/App';
 import 'isomorphic-fetch';  
 
 
-class Test extends React.Component{
-  render(){
-    return <h1>Work ???</h1>
-  }
-}
 /* Servidor de Hapi */
 const server = Hapi.server({
   port: 4000,
@@ -36,8 +30,8 @@ server.route({
     let term = "cat";
     let url = `https://pixabay.com/api/?key=9419402-e507727b63e86f0bb83d8bd28&q=${term}&image_type=photo&pretty=true`;
     
-    return axios.get(url).then(resp => {
-      let data = resp.data.hits;
+    return fetch(url).then(resp => resp.json()).then( resp => {
+      let data = resp.hits;
 
       const html = renderToString(
         <StaticRouter location={uri} context={context}>
@@ -52,7 +46,6 @@ server.route({
       }
       return h.response(Html(obj));
     })
-    
   }
 });
 

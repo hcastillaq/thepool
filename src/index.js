@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './store';
 import addSearchData from './actions/SearchArctions';
 import App from './shared/App';
-
+window._ = require('lodash');
 
 hydrate(
   <BrowserRouter>
