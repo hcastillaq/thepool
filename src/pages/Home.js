@@ -1,18 +1,17 @@
 import React from 'react';
 import store from './../store';
-import LazyLoad from './../helpers/LazyLoad';
-		
-const Search = () => {
-	return (<LazyLoad getComponent={ () =>  import('./../components/Search') } 
-		loader={ () => <div className="searchInput searchInput--loader"></div> }> </LazyLoad>)
-}
+import addSearchData from './../actions/SearchArctions';
+import Search from './../components/Search';
 
 class Home extends React.Component{
 	constructor(props)
 	{
 		super(props);
-
 		this.state = {navComponent: <div>Loagin nav component</div>}
+	}
+	componentDidMount()
+	{
+	
 	}
 	render(){
 		return(
@@ -22,7 +21,7 @@ class Home extends React.Component{
 					<Search></Search>
 				</header>	
 
-				<ItemsContianer />
+				<ItemsContianer initialData={this.props.initialData}/>
 
 				<form action="http://localhost:4000/file" method="post"  encType="multipart/form-data">
 					<input type='file' name="file" />
@@ -39,16 +38,22 @@ class ItemsContianer extends React.Component{
 	constructor(props)
 	{
 		super(props);
-		this.state = { items: [] };
+
+		this.state = { items:  this.initialData ? this.initialData : [] };
+		this.storeSubscription;
 	}
 	
 	componentDidMount()
-	{
-		this.state.items = store.getState().searchResults;
+	{	
 		
-		store.subscribe(() => {
+		this.storeSubscription = store.subscribe(() => {
 			this.setState( { items: store.getState().searchResults } )
 		});
+
+	}
+	componentWillUnmount()
+	{
+		this.storeSubscription()
 	}
 
 	render()

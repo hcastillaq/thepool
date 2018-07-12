@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+var nodeExternals = require('webpack-node-externals')
 
 const extractSass = new ExtractTextPlugin({
   filename:  (getPath) => {
@@ -61,9 +62,10 @@ const config =
   },
   plugins:[
     extractSass,
+    /*
     new UglifyJsPlugin({
       parallel: true
-    })
+    })*/
   ],
 }
 module.exports  = config;

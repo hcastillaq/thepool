@@ -4,13 +4,14 @@ import Nav from './../components/Nav';
 import Home from './../pages/Home';
 
 class App extends React.Component{
+
   render(){
     return(
       <div>
         <Nav/>
         <div className="container">
           <Switch>
-            <Route exact path="/" render={() => <Home />} />
+            <Route exact path="/" render={() => <Home initialData={this.props.initialData} />} />
             <Route path="/about" render={() => <h1>About page</h1>} />
             <Route render={() => <h1>Not found</h1>} />
           </Switch>

@@ -5,7 +5,6 @@ class Search extends React.Component{
 	constructor(props)
 	{
 		super(props);
-		
 		this.onChange = this.onChange.bind(this);
 	}
 

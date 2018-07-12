@@ -6,8 +6,10 @@ import Html from './src/server/Html';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
-
+import axios from 'axios';
 import App from './src/shared/App';
+import 'isomorphic-fetch';  
+
 
 class Test extends React.Component{
   render(){
@@ -31,17 +33,26 @@ server.route({
   handler: (request, h) =>{
     let uri = request.path;
     const context = {};
-    const html = renderToString(
-      <StaticRouter location="/" context={context}>
-        <App />
-      </StaticRouter>,
-    );
+    let term = "cat";
+    let url = `https://pixabay.com/api/?key=9419402-e507727b63e86f0bb83d8bd28&q=${term}&image_type=photo&pretty=true`;
+    
+    return axios.get(url).then(resp => {
+      let data = resp.data.hits;
 
-    let obj = {
-      title: 'Server test',
-      body: html
-    }
-    return Html(obj);
+      const html = renderToString(
+        <StaticRouter location={uri} context={context}>
+          <App initialData={data}/>
+        </StaticRouter>,
+      );
+
+      let obj = {
+        title: 'Server test',
+        body: html,
+        initialData: data
+      }
+      return h.response(Html(obj));
+    })
+    
   }
 });
 
