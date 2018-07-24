@@ -18,6 +18,10 @@ class Ajax {
   {
     return from( axios.get(url).then( e => e.data) );
   }
+
+  post(url, data){
+    return from(axios.post(url, data).then(e => e.data));
+  }
 }
 
 export default new Ajax();

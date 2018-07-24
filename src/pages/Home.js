@@ -10,10 +10,7 @@ class Home extends React.Component{
 		super(props);
 		this.state = {navComponent: <div>Loagin nav component</div>}
 	}
-	componentDidMount()
-	{
-	
-	}
+
 	render(){
 		return(
 			<div>
@@ -30,7 +27,6 @@ class Home extends React.Component{
 				</form>
 
 			</div>
-
 		)
 	}
 }

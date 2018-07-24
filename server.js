@@ -9,18 +9,42 @@ import { StaticRouter } from 'react-router';
 import App from './src/shared/App';
 import 'isomorphic-fetch';  
 
-
 /* Servidor de Hapi */
 const server = Hapi.server({
   port: 4000,
   host: 'localhost',
   routes: {
     files: {
-        relativeTo: Path.join(__dirname, 'public')
+      relativeTo: Path.join(__dirname, 'public')
     }
   }
 });
 
+/* Subir imagenes */
+server.route({
+  method: "POST",
+  path:"/post/new",
+  config:{
+    payload:{
+      output: 'stream',
+      parse: true,
+      allow: 'multipart/form-data'
+    }
+  },
+  handler: (request, h)=>{
+    let data = request.payload;
+    if(data.file)
+    {
+      let name = data.file.hapi.filename;
+      let path = __dirname + '/public/uploads/'+ name;
+      let file = fs.createWriteStream(path);
+      data.file.pipe(file);
+    }
+    return data;
+  }
+});
+
+/* Ruta que renderiza la app en react */
 server.route({
   method:'GET',
   path:"/{path*}",
@@ -57,7 +81,7 @@ const init = async () => {
     method: 'GET',
     path: '/static/{file*}',
     handler: function (request, h) {
-        return h.file(request.params.file);
+      return h.file(request.params.file);
     }
   });
 

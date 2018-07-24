@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import Nav from './../components/Nav';
 import Home from './../pages/Home';
-
+import NewPost from './../pages/posts/NewPost';
 class App extends React.Component{
 
   render(){
@@ -12,7 +12,7 @@ class App extends React.Component{
         <div className="container">
           <Switch>
             <Route exact path="/" render={() => <Home initialData={this.props.initialData} />} />
-            <Route path="/about" render={() => <h1>About page</h1>} />
+            <Route path="/post/new" render={() => <NewPost /> } />
             <Route render={() => <h1>Not found</h1>} />
           </Switch>
         </div>
@@ -22,7 +22,7 @@ class App extends React.Component{
             <Link to="/">Home page</Link>
           </li>
           <li>
-            <Link to="/about">About page</Link>
+            <Link to="/post/new">Add Post</Link>
           </li>
         </ul>
       </div>

@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-var nodeExternals = require('webpack-node-externals')
 
 const extractSass = new ExtractTextPlugin({
   filename:  (getPath) => {
@@ -21,6 +20,7 @@ const config =
     chunkFilename: './js/chunks/[name].[chunkhash].js',
     filename: './js/[name].js'
   },
+  devtool: 'eval-source-map',
   module:{
     rules:[
       {
