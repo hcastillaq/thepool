@@ -17,7 +17,7 @@ class NewPostForm extends React.Component{
   onSubmit(e)
   {
     let formData = new FormData(e.target);
-    ajax.post('/post/new', formData).subscribe( e => console.log('is heree', e));
+    ajax.post('post/new', formData).subscribe( e => console.log('is heree', e) );
     e.preventDefault();
   }
 
@@ -32,7 +32,7 @@ class NewPostForm extends React.Component{
           <textarea placeholder="Descripción" name="description" required ></textarea>
         </div>
         <div>
-          <input type="file" name="file" required />
+          <input type="file" name="files[]" multiple required />
         </div>
         <div>
           <input type="text" name="tags" placeholder="tags" required />

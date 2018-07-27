@@ -7,7 +7,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import App from './src/shared/App';
-import 'isomorphic-fetch';  
+import 'isomorphic-fetch';
 
 /* Servidor de Hapi */
 const server = Hapi.server({
@@ -44,6 +44,13 @@ server.route({
   }
 });
 
+server.route({
+  method:"POST",
+  path:'/hola',
+  handler: (request, h)=>{
+    return 'work';
+  }
+})
 /* Ruta que renderiza la app en react */
 server.route({
   method:'GET',
@@ -51,25 +58,21 @@ server.route({
   handler: (request, h) =>{
     let uri = request.path;
     const context = {};
-    let term = "cat";
-    let url = `https://pixabay.com/api/?key=9419402-e507727b63e86f0bb83d8bd28&q=${term}&image_type=photo&pretty=true`;
     
-    return fetch(url).then(resp => resp.json()).then( resp => {
-      let data = resp.hits;
+    let data = [];
 
-      const html = renderToString(
-        <StaticRouter location={uri} context={context}>
-          <App initialData={data}/>
-        </StaticRouter>,
-      );
+    const html = renderToString(
+      <StaticRouter location={uri} context={context}>
+        <App initialData={data}/>
+      </StaticRouter>,
+    );
 
-      let obj = {
-        title: 'Server test',
-        body: html,
-        initialData: data
-      }
-      return h.response(Html(obj));
-    })
+    let obj = {
+      title: 'Server test',
+      body: html,
+      initialData: data
+    }
+    return h.response(Html(obj));
   }
 });
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchService from './../services/SearchService';
+import axios from 'axios';
 
 class Search extends React.Component{
 	constructor(props)
@@ -9,13 +10,13 @@ class Search extends React.Component{
 	}
 
 	componentWillMount(){
-		SearchService.subscription();
+		//SearchService.subscription();
 	}
 
 	onChange(e)
 	{
-		let key = '9419402-e507727b63e86f0bb83d8bd28';
 		let search = e.target.value.trim();
+		
 		if( search != '')
 		{
 			SearchService.search(search);

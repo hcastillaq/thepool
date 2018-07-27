@@ -18,14 +18,7 @@ class Home extends React.Component{
 					<h1>The Pool</h1>
 					<Search></Search>
 				</header>	
-
 				<ItemsContianer initialData={this.props.initialData}/>
-
-				<form action="http://localhost:4000/file" method="post"  encType="multipart/form-data">
-					<input type='file' name="file" />
-					<input type="submit" />
-				</form>
-
 			</div>
 		)
 	}

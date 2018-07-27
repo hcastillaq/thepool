@@ -12,11 +12,11 @@ let searchServiceInstace = null;
 class SearchService {
   constructor()
   { 
-    this.subject = new Subject();
-
     if(_.isNull(searchServiceInstace))
     {
       this.searchServiceInstace = this;
+      this.subject = new Subject();
+      this.subscription();
     }
 
     return searchServiceInstace;
@@ -29,17 +29,21 @@ class SearchService {
 
   getResults(term)
   {
-    let url = `https://pixabay.com/api/?key=9419402-e507727b63e86f0bb83d8bd28&q=${term}&image_type=photo&pretty=true`;
-      
-    return Ajax.get(url);
+    let url = 'posts/query';
+    return Ajax.post(url, {query: term});
   }
 
   subscription()
   {
     this.subject.pipe(debounceTime(200), 
-      switchMap(term => this.getResults(term))).subscribe(result => 
+      switchMap(term => this.getResults(term))).subscribe(resp => 
       {
-        this.setDataSearch(result.hits);
+        if(resp.status == 200){
+          console.log('full request', resp)
+        }else{
+          console.log('bad request', resp);
+        }
+        //this.setDataSearch(result);
       });
   }
 
