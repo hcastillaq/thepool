@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs/operators/switchMap';
 import store from './../store';
 import {addSearchData} from './../actions/SearchArctions';
 import _ from 'lodash';
-
+import  validator from 'validator';
 
 let searchServiceInstace = null;
 
@@ -30,6 +30,7 @@ class SearchService {
   getResults(term)
   {
     let url = 'posts/query';
+    term = validator.escape(term);
     return Ajax.post(url, {query: term});
   }
 
@@ -39,11 +40,8 @@ class SearchService {
       switchMap(term => this.getResults(term))).subscribe(resp => 
       {
         if(resp.status == 200){
-          console.log('full request', resp)
-        }else{
-          console.log('bad request', resp);
+          this.setDataSearch(resp.data.posts);
         }
-        //this.setDataSearch(result);
       });
   }
 

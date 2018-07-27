@@ -17,7 +17,7 @@ class NewPostForm extends React.Component{
   onSubmit(e)
   {
     let formData = new FormData(e.target);
-    ajax.post('post/new', formData).subscribe( e => console.log('is heree', e) );
+    ajax.post('posts/new', formData).subscribe( e => console.log('is heree', e) );
     e.preventDefault();
   }
 

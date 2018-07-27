@@ -29,21 +29,19 @@ class ItemsContianer extends React.Component{
 	{
 		super(props);
 		
-		if(_.isEmpty(store.getState().searchResults) && this.props.initialData)
-		{
-			this.state = { items: this.props.initialData };
-		}	else{
-			this.state = { items: store.getState().searchResults };
+		this.state = {
+			items: []
 		}
 		this.storeSubscription;
 	}
 	
 	componentDidMount()
 	{	
+		
 		this.storeSubscription = store.subscribe(() => {
 			this.setState( { items: store.getState().searchResults } )
 		});
-
+		
 	}
 	componentWillUnmount()
 	{
@@ -53,21 +51,14 @@ class ItemsContianer extends React.Component{
 	render()
 	{
 		const items = [];
-		this.state.items.forEach(item => {
-			items.push(
-				<div key={item.id}>
-					<img   src={item.previewURL} />
-					<p>
-						<strong>User:</strong>
-						{item.user}
-					</p>
-					<p>
-						<strong>Tags:</strong>
-						{item.tags}
-					</p>
-				</div>
-			)
-		});
+		
+		this.state.items.forEach(post => {
+			items.push(<div key={post.id}>
+				<span>{post.title}</span>
+				<p>{post.description}</p>
+			</div>)
+		})
+
 		return(
 			<div>
 				{items}
