@@ -39,11 +39,11 @@ class SearchService {
       switchMap(term => this.getResults(term))).subscribe(resp => 
       {
         if(resp.status == 200){
-          console.log('full request', resp)
+          console.log('full request', resp);
+          this.setDataSearch(resp.data.results);
         }else{
           console.log('bad request', resp);
         }
-        //this.setDataSearch(result);
       });
   }
 

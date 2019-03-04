@@ -55,7 +55,7 @@
     "style-loader": "^0.19.1",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "validator": "^10.4.0",
-    "webpack-dev-server": "^2.9.7",
+    "webpack-dev-server": "^3.2.1",
     "webpack-node-externals": "^1.7.2"
   }
 }

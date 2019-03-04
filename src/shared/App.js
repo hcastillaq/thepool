@@ -16,15 +16,7 @@ class App extends React.Component{
             <Route render={() => <h1>Not found</h1>} />
           </Switch>
         </div>
-        <p>Links:</p>
-        <ul>
-          <li>
-            <Link to="/">Home page</Link>
-          </li>
-          <li>
-            <Link to="/post/new">Add Post</Link>
-          </li>
-        </ul>
+
       </div>
     )
   }

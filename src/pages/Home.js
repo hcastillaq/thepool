@@ -1,6 +1,5 @@
 import React from 'react';
 import store from './../store';
-import addSearchData from './../actions/SearchArctions';
 import Search from './../components/Search';
 import _ from 'lodash';
 
@@ -57,14 +56,16 @@ class ItemsContianer extends React.Component{
 			items.push(
 				<div key={item.id}>
 					<img   src={item.previewURL} />
+					<strong>title: {item.title}</strong>
 					<p>
-						<strong>User:</strong>
-						{item.user}
+						<strong>Description:</strong>
+						{item.description}
 					</p>
 					<p>
 						<strong>Tags:</strong>
 						{item.tags}
 					</p>
+					<br></br>
 				</div>
 			)
 		});

@@ -50,7 +50,8 @@ server.route({
   handler: (request, h)=>{
     return 'work';
   }
-})
+});
+
 /* Ruta que renderiza la app en react */
 server.route({
   method:'GET',
