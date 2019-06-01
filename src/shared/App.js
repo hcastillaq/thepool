@@ -3,6 +3,8 @@ import { Link, Route, Switch } from 'react-router-dom';
 import Nav from './../components/Nav';
 import Home from './../pages/Home';
 import NewPost from './../pages/posts/NewPost';
+
+
 class App extends React.Component{
 
   render(){

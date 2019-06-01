@@ -10,6 +10,7 @@ import _ from 'lodash';
 let searchServiceInstace = null;
 
 class SearchService {
+
   constructor()
   { 
     if(_.isNull(searchServiceInstace))
@@ -22,24 +23,33 @@ class SearchService {
     return searchServiceInstace;
   }
 
-
+  /**
+   * 
+   * @param {*} term 
+   */
   search(term){
     this.subject.next(term);
   }
 
+  /**
+   * 
+   * @param {*} term 
+   */
   getResults(term)
   {
     let url = 'posts/query';
     return Ajax.post(url, {query: term});
   }
 
+  /**
+   * 
+   */
   subscription()
   {
     this.subject.pipe(debounceTime(200), 
       switchMap(term => this.getResults(term))).subscribe(resp => 
       {
         if(resp.status == 200){
-          console.log('full request', resp);
           this.setDataSearch(resp.data.results);
         }else{
           console.log('bad request', resp);
@@ -47,6 +57,10 @@ class SearchService {
       });
   }
 
+  /**
+   * 
+   * @param {*} data 
+   */
   setDataSearch(data)
   {
     store.dispatch(addSearchData(data));
