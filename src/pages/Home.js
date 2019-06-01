@@ -4,16 +4,17 @@ import _ from "lodash";
 import ajax from "./../services/Ajax";
 import { getAllPublications } from "./../actions/PublicationActions";
 import {
-  Card,
-  CardContent,
   Typography,
   Container,
   Grid,
-  CardHeader
+  Chip,
+  List,
 } from "@material-ui/core";
-import Nav from "../components/Nav";
 import Search from "../components/Search";
 import moment from "moment";
+
+/* pequeña config para moment */
+moment.locale("es");
 
 class Home extends React.Component {
   constructor(props) {
@@ -23,7 +24,6 @@ class Home extends React.Component {
 
   componentWillMount() {
     ajax.post("posts").subscribe(result => {
-      console.log(result.data.results);
       store.dispatch(getAllPublications(result.data.results));
     });
   }
@@ -42,7 +42,9 @@ class SearchBar extends React.Component {
   render() {
     return (
       <Container>
-        <Search />
+        <div style={{ margin: "20px 0px" }}>
+          <Search />
+        </div>
       </Container>
     );
   }
@@ -64,10 +66,6 @@ class ItemsContianer extends React.Component {
     store.subscribe(() => {
       this.setState({ items: store.getState().searchResults });
     });
-
-    store.subscribe(() => {
-      this.setState({ items: store.getState().allPublication });
-    });
   }
   componentWillUnmount() {
     //this.storeSubscription()
@@ -79,13 +77,71 @@ class ItemsContianer extends React.Component {
       items.push(
         <Grid item xs={12} key={item.id} container>
           <Grid item xs={12} sm={7}>
-            <Card>
-              <CardContent>
+            <Grid item xs={12}>
+              <Typography
+                component="h5"
+                variant="h6"
+                style={{ fontSize: "1em" }}
+                color="primary"
+                noWrap
+              >
+                {item.title}
+              </Typography>
+            </Grid>
+
+            <Grid container direction="row" justify="flex-start" item xs={12}>
+              <Typography
+                variant="subtitle1"
+                color="textSecondary"
+                style={{ fontSize: ".8em" }}
+              >
+                {moment(item.created_at).format("LL")} -  By Hernan Castilla
+              </Typography>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                component="p"
+                style={{ margin: "10px 0px" }}
+              >
+                {item.description}
+              </Typography>
+            </Grid>
+
+            <Grid container direction="row" justify="flex-start" spacing={1}>
+              {item.tags.split(",").map( (tag, index) => (
+                <Grid item key={index}>
+                  <Chip label={tag} />
+                </Grid>
+              ))}
+            </Grid>
+
+          </Grid>
+        </Grid>
+      );
+    });
+    return (
+      <Container>
+        <List>
+          <Grid container spacing={2}>
+            {items}
+          </Grid>
+        </List>
+      </Container>
+    );
+  }
+}
+export default Home;
+
+/**
+ *               <CardContent>
                 <Typography
                   component="h5"
                   variant="h6"
-									style={{ fontSize: "1.1em" }}
-									color="primary"
+                  style={{ fontSize: "1.1em" }}
+                  color="primary"
                   noWrap
                 >
                   {item.title}
@@ -97,7 +153,7 @@ class ItemsContianer extends React.Component {
                     color="textSecondary"
                     style={{ fontSize: ".8em" }}
                   >
-                    {moment(item.created_at).format("YYYY-MM-DD")}
+                    {moment(item.created_at).format("LL")}
                   </Typography>
                 </Grid>
 
@@ -110,18 +166,14 @@ class ItemsContianer extends React.Component {
                   {item.description}
                 </Typography>
               </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      );
-    });
-    return (
-      <Container>
-        <Grid container spacing={2}>
-          {items}
-        </Grid>
-      </Container>
-    );
-  }
-}
-export default Home;
+
+              <ListItemSecondaryAction>
+                <Grid container direction="row" justify="flex-end" spacing={1}>
+                  {item.tags.split(",").map(tag => (
+                    <Grid item>
+                      <Chip label={tag} />
+                    </Grid>
+                  ))}
+                </Grid>
+              </ListItemSecondaryAction>
+ */
