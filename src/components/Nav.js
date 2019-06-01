@@ -1,22 +1,24 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Grid,
+  Container
+} from "@material-ui/core";
+import Search from "./Search";
 
 export default class Nav extends Component {
-	render() {
-		return (
-			<div className="nav">
-			  navbar
-				<div>
-					<ul>
-						<li>
-							<Link to="/">Home page</Link>
-						</li>
-						<li>
-							<Link to="/post/new">Add Post</Link>
-						</li>
-        	</ul>
-				</div>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h5" noWrap>
+            The Pool
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    );
+  }
 }

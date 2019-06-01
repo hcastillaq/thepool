@@ -1,7 +1,8 @@
-import {ADD_SEARCH_DATA} from './../types/types';
+import { ADD_SEARCH_DATA, GET_ALL_PUBLICATIONS } from './../types/types';
 
 const initialState = {
-  searchResults: []
+  searchResults: [],
+  allPublication: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const rootReducer = (state = initialState, action) => {
         ... state,
         searchResults: action.payload
       };
+    case GET_ALL_PUBLICATIONS:
+      return {
+        ...state,
+        allPublication: action.payload
+      }
     default:
       return state;
   }

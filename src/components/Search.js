@@ -1,38 +1,54 @@
-import React from 'react';
-import SearchService from './../services/SearchService';
-import axios from 'axios';
+import React from "react";
+import SearchService from "./../services/SearchService";
+import { InputBase, IconButton, Paper } from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
 
-class Search extends React.Component{
-	constructor(props)
-	{
-		super(props);
-		this.onChange = this.onChange.bind(this);
-	}
+const useStyles = {
+  root: {
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    height: "35px",
+  },
+  input: {
+    marginLeft: 8,
+		flex: 1,
+  },
+  iconButton: {
+		padding: 10,
+		width: ".8em",
+		height: ".8em"
+  }
+};
 
-	componentWillMount(){
-		//SearchService.subscription();
-	}
+class Search extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
+  }
 
-	onChange(e)
-	{
-		let search = e.target.value.trim();
-		
-		if( search != '')
-		{
-			SearchService.search(search);
-		}else{
-			SearchService.setDataSearch([]);
-		}
-	}
+  onChange(e) {
+    let search = e.target.value.trim();
 
-	render(){
-		return(
-			<div className="searchInput">
-				<i className="icon icon-search icon-1x"></i>
-				<input type="text" onChange={this.onChange} 
-					placeholder="Ejemplo: Taller de electricidad" />
-			</div>
-		)
-	}
+    if (search != "") {
+      SearchService.search(search);
+    } else {
+      SearchService.setDataSearch([]);
+    }
+  }
+
+  render() {
+    return (
+      <Paper style={useStyles.root}>
+        <InputBase
+          placeholder="Ejemplo: Taller de electricidad"
+          onChange={this.onChange}
+          style={useStyles.input}
+        />
+        <SearchIcon style={useStyles.iconButton} color="primary" />
+      </Paper>
+    );
+  }
 }
+
 export default Search;
