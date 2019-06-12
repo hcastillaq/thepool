@@ -6,4 +6,4 @@ export const ADD_SEARCH_DATA = 'ADD_SEARCH_DATA';
 /**
  * Tipo para obtener todas las publicaciones
  */
-export const GET_ALL_PUBLICATIONS = 'GET_ALL_PUBLICATIONS';
+export const GET_ALL_PUBLICATIONS = '[PUBLICATIONS] GET_ALL_PUBLICATIONS';

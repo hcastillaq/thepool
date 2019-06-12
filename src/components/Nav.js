@@ -4,10 +4,7 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Grid,
-  Container
 } from "@material-ui/core";
-import Search from "./Search";
 
 export default class Nav extends Component {
   render() {
@@ -16,6 +13,7 @@ export default class Nav extends Component {
         <Toolbar>
           <Typography variant="h5" noWrap>
             The Pool
+            <Link to="/post/new"> new </Link>
           </Typography>
         </Toolbar>
       </AppBar>

@@ -1,10 +1,12 @@
-import {Subject} from 'rxjs';
-import Ajax from './Ajax';
+import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { switchMap } from 'rxjs/operators/switchMap';
-import store from './../store';
-import {addSearchData} from './../actions/SearchArctions';
+import { AddSearchDataAction } from '../store/actions/SearchArctions';
+
+import { store } from './../store/store';
+import Ajax from './Ajax';
 import _ from 'lodash';
+
 
 
 let searchServiceInstace = null;
@@ -46,7 +48,7 @@ class SearchService {
    */
   subscription()
   {
-    this.subject.pipe(debounceTime(200), 
+    this.subject.pipe(debounceTime(0), 
       switchMap(term => this.getResults(term))).subscribe(resp => 
       {
         if(resp.status == 200){
@@ -63,7 +65,7 @@ class SearchService {
    */
   setDataSearch(data)
   {
-    store.dispatch(addSearchData(data));
+    store.dispatch( AddSearchDataAction(data) );
   }
 }
 

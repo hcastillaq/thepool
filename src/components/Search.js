@@ -8,7 +8,7 @@ const useStyles = {
     display: "flex",
     alignItems: "center",
     width: "100%",
-    height: "35px",
+    height: "45px",
   },
   input: {
     marginLeft: 8,

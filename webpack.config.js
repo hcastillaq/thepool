@@ -10,7 +10,7 @@ module.exports = {
   module:{
     rules:[
       {
-        test: /\.js$/,
+        test: /\.(ts|js|tsx)$/,
         exclude: /node_modules/,
         use:{
           loader: "babel-loader"
@@ -18,13 +18,17 @@ module.exports = {
       },
       {
         test: /\.sass$/,
+        exclude: /node_modules/,
         use: [
             "style-loader", 
             "css-loader", 
             "sass-loader"
         ]
       }
-    ]
+    ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js']
   },
   devServer:{
     contentBase: path.join(__dirname, "public"),

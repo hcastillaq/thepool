@@ -25,7 +25,6 @@ class App extends React.Component {
   render() {
     return (
       <ThemeProvider theme={customTheme}>
-        <Nav />
         <Switch>
           <Route
             exact
