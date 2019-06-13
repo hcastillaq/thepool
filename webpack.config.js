@@ -10,11 +10,13 @@ module.exports = {
   module:{
     rules:[
       {
-        test: /\.(ts|js|tsx)$/,
-        exclude: /node_modules/,
-        use:{
-          loader: "babel-loader"
-        }
+        test: /\.tsx?$/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.js$/,
+        use: ["source-map-loader", "babel-loader"],
+        enforce: "pre"
       },
       {
         test: /\.sass$/,

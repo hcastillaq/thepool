@@ -1,10 +1,9 @@
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { switchMap } from 'rxjs/operators/switchMap';
-import { AddSearchDataAction } from '../store/actions/SearchArctions';
-
+import { QueryAction } from './../store/actions/query.actions';
 import { store } from './../store/store';
-import Ajax from './Ajax';
+import AjaxService from './ajax.service';
 import _ from 'lodash';
 
 
@@ -40,7 +39,7 @@ class SearchService {
   getResults(term)
   {
     let url = 'posts/query';
-    return Ajax.post(url, {query: term});
+    return AjaxService.post(url, {query: term});
   }
 
   /**
@@ -65,7 +64,6 @@ class SearchService {
    */
   setDataSearch(data)
   {
-    store.dispatch( AddSearchDataAction(data) );
   }
 }
 

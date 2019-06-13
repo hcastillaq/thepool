@@ -1,5 +1,4 @@
-import React, { Fragment } from "react";
-import ajax from "./../services/Ajax";
+import React from "react";
 import {
 	Container,
 	Grid,
@@ -7,8 +6,7 @@ import {
 } from "@material-ui/core";
 
 import SearchBar from "../components/SearchBar";
-import { store } from "../store/store";
-import { GetAllPublicationsAll } from "../store/actions/PublicationActions";
+
 class Home extends React.Component 
 {
 	constructor(props) 
@@ -17,12 +15,6 @@ class Home extends React.Component
 		this.state = { navComponent: <div>Loading nav component</div> };
 	}
 
-	componentWillMount() 
-	{
-		ajax.post("posts").subscribe(result => {
-			store.dispatch( GetAllPublicationsAll(result.data.results) );
-		});
-	}
 
 	render() 
 	{
@@ -51,9 +43,5 @@ class Home extends React.Component
 		);
 	}
 }
-		
-		
-		
-
 		
 export default Home;

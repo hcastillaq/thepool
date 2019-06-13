@@ -1,23 +1,35 @@
-import { ADD_SEARCH_DATA, GET_ALL_PUBLICATIONS } from '../types/types';
-
-const initialState = {
-	searchResults: [],
-	allPublication: []
-};
+import { QueryTypes, PublicationsTypes } from '../types/types';
 
 
-export function RootReducer(state = initialState, action) {
+interface initialState {
+	query: String,
+	publications: Array<Object>
+}
+interface Action {
+	type: String;
+	payload: any;
+}
+
+const INITIALSTATE : initialState = {
+	query: '',
+	publications: []
+}
+
+export function RootReducer(state = INITIALSTATE, action: Action) {
 	switch (action.type) {
-		case ADD_SEARCH_DATA:
+		
+		case QueryTypes.QUERY:
 			return {
 				...state,
-				searchResults: action.payload
+				query: action.payload
 			};
-		case GET_ALL_PUBLICATIONS:
+		
+		case PublicationsTypes.ADD_PUBLICATIONS:
 			return {
 				...state,
-				allPublication: action.payload
-			}
+				publications: action.payload
+			};
+
 		default:
 			return state;
 	}
