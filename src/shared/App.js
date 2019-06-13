@@ -29,9 +29,10 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={() => <Home initialData={this.props.initialData} />}
+            component={ Home }
           />
-          <Route path="/post/new" render={() => <NewPost />} />
+          <Route path="/post/new" component={ NewPost } />
+
           <Route render={() => <h1>Not found</h1>} />
         </Switch>
       </ThemeProvider>

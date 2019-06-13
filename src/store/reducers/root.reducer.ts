@@ -3,7 +3,8 @@ import { QueryTypes, PublicationsTypes } from '../types/types';
 
 interface initialState {
 	query: String,
-	publications: Array<Object>
+	publications: Array<Object>,
+	lastActionType: String
 }
 interface Action {
 	type: String;
@@ -12,7 +13,8 @@ interface Action {
 
 const INITIALSTATE : initialState = {
 	query: '',
-	publications: []
+	publications: [],
+	lastActionType: ''
 }
 
 export function RootReducer(state = INITIALSTATE, action: Action) {
@@ -21,13 +23,15 @@ export function RootReducer(state = INITIALSTATE, action: Action) {
 		case QueryTypes.QUERY:
 			return {
 				...state,
-				query: action.payload
+				query: action.payload,
+				lastActionType: QueryTypes.QUERY
 			};
 		
 		case PublicationsTypes.ADD_PUBLICATIONS:
 			return {
 				...state,
-				publications: action.payload
+				publications: action.payload,
+				lastActionType: PublicationsTypes.ADD_PUBLICATIONS
 			};
 
 		default:

@@ -4,6 +4,7 @@ import Search from './Search';
 import { Container, Grid } from '@material-ui/core';
 
 class SearchBar extends React.Component {
+
   render() {
     return (
       <Fragment>

@@ -31,7 +31,11 @@ class Search extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  componentWillMount() {
+
+  componentDidMount() {
+    let query = store.getState().query;
+    this.setState( { query } );
+
     store.subscribe(
       () => {
         this.setState({ query: store.getState().query });

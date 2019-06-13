@@ -6,15 +6,39 @@ import {
 } from "@material-ui/core";
 
 import SearchBar from "../components/SearchBar";
+import { store } from './../store//store';
+import { PublicationsTypes } from './../store/types/types';
+import _ from 'lodash';
 
 class Home extends React.Component 
 {
-	constructor(props) 
+	
+	store$;
+	constructor(props: any) 
 	{
 		super(props);
 		this.state = { navComponent: <div>Loading nav component</div> };
 	}
 
+	componentDidMount()
+	{
+		
+		this.store$ = store.subscribe( 
+			() =>
+			{
+				let state = store.getState();
+				if( state.lastActionType == PublicationsTypes.ADD_PUBLICATIONS)
+				{
+					this.props.history.push(`/q/${state.query}`);
+				}
+			}
+		);
+	}
+
+	componentWillUnmount()
+	{
+		this.store$();
+	}
 
 	render() 
 	{
