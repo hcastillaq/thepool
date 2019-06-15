@@ -8,10 +8,9 @@ import { ThemeProvider } from "@material-ui/styles";
 import deepPurple from "@material-ui/core/colors/deepPurple";
 
 /* Componentes */
-import Nav from "./../components/Nav";
 import Home from "./../pages/Home";
 import NewPost from "./../pages/posts/NewPost";
-import Container from "@material-ui/core/Container";
+import PageResult from '../pages/results.page';
 
 /* Tema personalziado */
 const customTheme = createMuiTheme({
@@ -31,7 +30,9 @@ class App extends React.Component {
             path="/"
             component={ Home }
           />
+          
           <Route path="/post/new" component={ NewPost } />
+          <Route path="/q/:query" component={ PageResult } />
 
           <Route render={() => <h1>Not found</h1>} />
         </Switch>

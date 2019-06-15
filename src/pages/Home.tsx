@@ -8,12 +8,14 @@ import {
 import SearchBar from "../components/SearchBar";
 import { store } from './../store//store';
 import { PublicationsTypes } from './../store/types/types';
-import _ from 'lodash';
 
 class Home extends React.Component 
 {
 	
-	store$;
+	store$: any;
+	props: any;
+	state: any;
+
 	constructor(props: any) 
 	{
 		super(props);
@@ -27,6 +29,7 @@ class Home extends React.Component
 			() =>
 			{
 				let state = store.getState();
+
 				if( state.lastActionType == PublicationsTypes.ADD_PUBLICATIONS)
 				{
 					this.props.history.push(`/q/${state.query}`);
@@ -45,7 +48,10 @@ class Home extends React.Component
 		return (
 			<div className="page page__home">
 				<Container maxWidth="sm" >
-					<Grid container justify="center" alignItems="center" className="page__home__content">
+					<Grid container 
+					justify="center" 
+					alignItems="center" 
+					className="page__home__content">
 
 						<Grid item xs={12} container spacing={1}>
 

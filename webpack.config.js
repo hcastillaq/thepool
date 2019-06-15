@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  devtool: 'eval-source-map',
   mode: "development",
   entry: "./src/index.js",
   output:{
@@ -34,7 +35,7 @@ module.exports = {
   },
   devServer:{
     contentBase: path.join(__dirname, "public"),
-    port: 9000,
+    port: 7000,
     compress: true
   }
 }

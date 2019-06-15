@@ -5,7 +5,7 @@ import moment from "moment";
 /* pequeña config para moment */
 moment.locale("es");
 
-class ItemSearchResult extends React.Component {
+class PublicationItemResult extends React.Component {
   render() {
 		const item = this.props.item;
     return (
@@ -57,4 +57,4 @@ class ItemSearchResult extends React.Component {
   }
 }
 
-export default ItemSearchResult;
+export default PublicationItemResult;
