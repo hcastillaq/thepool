@@ -1,8 +1,9 @@
 {
   "presets": [
-    "env", "stage-2","react", "es2015"
+    "@babel/preset-react", "@babel/preset-typescript", "@babel/env"
   ],
   "plugins": [
-    "dynamic-import-node"
-  ]
+			"@babel/proposal-class-properties",
+			"@babel/proposal-object-rest-spread"
+	]
 }

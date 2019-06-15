@@ -1,6 +1,7 @@
 export default (obj) => {
   return(
     `
+      <!DOCTYPE html>
       <html>
         <head>
           <title>${obj.title}</title>
