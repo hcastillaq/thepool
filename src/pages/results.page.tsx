@@ -4,6 +4,7 @@ import { store } from '../store/store';
 import PublicationItemResult from '../components/PublicationItemResult';
 import { Grid } from '@material-ui/core';
 import publicacionService from '../services/publicacion.service';
+import { Container } from '@material-ui/core';
 
 class PageResult extends React.Component {
 	
@@ -39,30 +40,30 @@ class PageResult extends React.Component {
 
 	render() {
 		return (
-			<Fragment>
+			<div className="page page_results">
 				<Nav></Nav>
+				<Container maxWidth="md" className="page_results__content">
+					<Grid container>
 
-				<Grid container>
+						<Grid item xs={12} container spacing={1}>
+							{
+								this.state.publications.map(
+									publication => {
+										return (
+											<Grid item xs={12}>
+												<PublicationItemResult
+													key={publication.id}
+													item={publication} />
+											</Grid>
+										)
+									}
+								)
+							}
+						</Grid>
 
-					<Grid item xs={8} container spacing={1}>
-						{
-							this.state.publications.map(
-								publication => {
-									return (
-										<Grid item xs={12}>
-											<PublicationItemResult
-												key={publication.id}
-												item={publication} />
-										</Grid>
-									)
-								}
-							)
-						}
 					</Grid>
-
-				</Grid>
-			</Fragment>
-
+				</Container>
+			</div>
 		)
 	}
 }

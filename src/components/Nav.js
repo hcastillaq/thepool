@@ -3,25 +3,36 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Grid
+  Grid,
+  Container,
 } from "@material-ui/core";
+
+import ButtonBase from '@material-ui/core/ButtonBase';
+
+import { Link } from 'react-router-dom';
 import SearchBar from "./SearchBar";
 
 export default class Nav extends Component {
   render() {
     return (
-      <AppBar position="static" style={ { padding: '10px 0px' } }>
-         <Grid container alignItems="center" spacing={1}>
-            
-            <Typography variant="h5" noWrap>
-              The Pool
-            </Typography>
+      <AppBar style={ { padding: '5px 0px' } } position="static">
+          <Container maxWidth="md">
+             <Grid container alignItems="center" spacing={1} style={ {margin:'0px', padding:'0px'} }>
+             
+             <ButtonBase>
+                <Typography variant="h5" noWrap>
+                    <Link to="/" >
+                        The Pool
+                    </Link>
+                </Typography>
+             </ButtonBase>
+              
+              <Grid item xs={8} style={ {marginLeft: '10px'} }>
+                <SearchBar />
+              </Grid>
 
-            <Grid item xs={6}>
-              <SearchBar />
             </Grid>
-
-          </Grid>
+          </Container>
       </AppBar>
     );
   }
