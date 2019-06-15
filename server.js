@@ -1,13 +1,23 @@
+/* Imports para Hapi */
 import Hapi from 'hapi';
 import Inert from 'inert';
+
+/* Imports Nativos */
 import fs from 'fs';
 import Path from 'path';
+import 'isomorphic-fetch';
+
+/* Import del Html a servir */
 import Html from './src/server/Html';
+
+/* Imports de react para SSR */
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
+
+/* Componente Princial */
 import App from './src/shared/App';
-import 'isomorphic-fetch';
+
 
 /* Servidor de Hapi */
 const server = Hapi.server({
@@ -44,13 +54,7 @@ server.route({
   }
 });
 
-server.route({
-  method:"POST",
-  path:'/hola',
-  handler: (request, h)=>{
-    return 'work';
-  }
-});
+
 
 /* Ruta que renderiza la app en react */
 server.route({

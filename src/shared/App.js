@@ -10,7 +10,7 @@ import deepPurple from "@material-ui/core/colors/deepPurple";
 /* Componentes */
 import Home from "./../pages/Home";
 import NewPost from "./../pages/posts/NewPost";
-import PageResult from '../pages/results.page';
+import PageResult from './../pages/results.page';
 
 /* Tema personalziado */
 const customTheme = createMuiTheme({

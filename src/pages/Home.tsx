@@ -6,8 +6,8 @@ import {
 } from "@material-ui/core";
 
 import SearchBar from "../components/SearchBar";
-import { store } from './../store//store';
 import { PublicationsTypes } from './../store/types/types';
+import store from './../store/root.store';
 
 class Home extends React.Component 
 {

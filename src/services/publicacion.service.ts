@@ -2,7 +2,7 @@
 
 import AjaxService from './ajax.service';
 import { AddPublicationsAction } from './../store/actions/publication.action';
-import { store } from './../store/store';
+import store from './../store/root.store';
 
 let _publicationService : PublicationService;
 

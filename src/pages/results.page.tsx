@@ -1,14 +1,18 @@
 import React, { Fragment } from 'react';
 import Nav from './../components/Nav';
-import { store } from '../store/store';
 import PublicationItemResult from '../components/PublicationItemResult';
 import { Grid } from '@material-ui/core';
 import publicacionService from '../services/publicacion.service';
 import { Container } from '@material-ui/core';
 
+
+/* importando store */
+import store from './../store/root.store';
+
 class PageResult extends React.Component {
 	
 	state: any;
+	
 	store$: any;
 	constructor(props: any) {
 		super(props);

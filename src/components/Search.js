@@ -2,7 +2,7 @@ import React from "react";
 import SearchService from "./../services/SearchService";
 import { InputBase, IconButton, Paper, Button } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import { store } from "../store/store";
+import store from "../store/root.store";
 import { QueryAction } from "../store/actions/query.actions";
 import PublicationService from '../services/publicacion.service.ts';
 import _ from 'lodash';
