@@ -5,14 +5,16 @@ import { Grid } from '@material-ui/core';
 import publicacionService from '../services/publicacion.service';
 import { Container } from '@material-ui/core';
 
+import _ from 'lodash';
 
 /* importando store */
 import store from './../store/root.store';
+import { PublicationsTypes, QueryTypes } from '../store/types/types';
 
 class PageResult extends React.Component {
 	
 	state: any;
-	
+	props: any;
 	store$: any;
 	constructor(props: any) {
 
@@ -30,7 +32,12 @@ class PageResult extends React.Component {
 		this.store$ = store.subscribe(
 			() => {
 				let state = store.getState();
-				this.setPublications( state.publications );
+				if( state.lastActionType == PublicationsTypes.ADD_PUBLICATIONS )
+				{
+					this.setPublications( state.publications );
+					
+					
+				}
 			}
 		);
 	}
@@ -51,7 +58,6 @@ class PageResult extends React.Component {
 				<Nav></Nav>
 				<Container maxWidth="md" className="page_results__content">
 					<Grid container>
-
 						<Grid item xs={12} container spacing={1}>
 							{
 								this.state.publications.map(

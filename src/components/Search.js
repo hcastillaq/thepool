@@ -1,11 +1,16 @@
 import React from "react";
-import SearchService from "./../services/SearchService";
+import { withRouter } from 'react-router-dom';
+
 import { InputBase, IconButton, Paper, Button } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import store from "../store/root.store";
+
 import { QueryAction } from "../store/actions/query.actions";
 import PublicationService from '../services/publicacion.service.ts';
+import { PublicationsTypes } from "../store/types/types";
+
+import store from "../store/root.store";
 import _ from 'lodash';
+
 
 const useStyles = {
 	root: {
@@ -44,7 +49,14 @@ class Search extends React.Component {
 
 		this.store$ = store.subscribe(
 			() => {
-				this.setState({ query: store.getState().query });
+				let state = store.getState();
+
+				this.setState( { query: state.query } );
+
+				if( state.lastActionType == PublicationsTypes.ADD_PUBLICATIONS )
+				{
+					this.props.history.push(`/q/${state.query}`);
+				}
 			}
 		);
 	}
@@ -56,7 +68,7 @@ class Search extends React.Component {
 
 	onChange(e) {
 		let query = e.target.value.trim();
-		store.dispatch(QueryAction(query));
+		store.dispatch( QueryAction( query ) );
 	}
 
 	onSubmit(e) {
@@ -90,4 +102,4 @@ class Search extends React.Component {
 	}
 }
 
-export default Search;
+export default withRouter( Search );

@@ -23,23 +23,10 @@ class Home extends React.Component
 
 	componentDidMount()
 	{
-		
-		this.store$ = store.subscribe( 
-			() =>
-			{
-				let state = store.getState();
-
-				if( state.lastActionType == PublicationsTypes.ADD_PUBLICATIONS)
-				{
-					this.props.history.push(`/q/${state.query}`);
-				}
-			}
-		);
 	}
 
 	componentWillUnmount()
 	{
-		this.store$();
 	}
 
 	render() 
