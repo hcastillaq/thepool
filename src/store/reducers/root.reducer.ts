@@ -1,21 +1,7 @@
 import { QueryTypes, PublicationsTypes } from '../types/types';
+import INITIALSTATE from './../models/initialstate.modes';
 
 
-interface initialState {
-	query: String,
-	publications: Array<Object>,
-	lastActionType: String
-}
-interface Action {
-	type: String;
-	payload: any;
-}
-
-const INITIALSTATE : initialState = {
-	query: '',
-	publications: [],
-	lastActionType: ''
-}
 
 export function RootReducer(state = INITIALSTATE, action: Action) {
 	switch (action.type) {

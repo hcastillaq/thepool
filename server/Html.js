@@ -23,6 +23,14 @@ const html = (obj ) => {
 
 				<body>
 					<div id="root">${obj.body}</div>
+
+					<!-- Store  -->
+					<script>
+						window.__PRELOADED_STATE__ = ${JSON.stringify(obj.store).replace(
+							/</g,
+							'\\u003c'
+						)}
+					</script>
 				</body>
 
 				 

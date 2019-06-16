@@ -55,11 +55,11 @@ class PageResult extends React.Component {
 						<Grid item xs={12} container spacing={1}>
 							{
 								this.state.publications.map(
-									publication => {
+									( publication, index ) => {
 										return (
 											<Grid item xs={12}>
 												<PublicationItemResult
-													key={publication.id}
+													key={index}
 													item={publication} />
 											</Grid>
 										)
