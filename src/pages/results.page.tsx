@@ -23,7 +23,10 @@ class PageResult extends React.Component {
 	componentWillMount()
 	{
 		this.setPublications( store.getState().publications );	
+	}
 
+	componentDidMount()
+	{
 		this.store$ = store.subscribe(
 			() => {
 				let state = store.getState();

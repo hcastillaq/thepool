@@ -1,0 +1,25 @@
+@font-face {
+  font-family: EncondeSansCondesed;
+    font-family-src: url("/fonts/EncodeSansCondensed-Regular.ttf"); }
+
+* {
+  font-family: EncondeSansCondesed, sans-serif, Arial, Helvetica !important;
+  margin: 0px; }
+
+a {
+  text-decoration: none;
+  color: white; }
+
+.page__home {
+  background-color: #efefef !important;
+  height: 100vh; }
+  .page__home .page__home__content {
+    height: 85vh; }
+
+.page_results {
+  margin-top: 60px; }
+  .page_results .page_results__content {
+    margin-top: 20px; }
+
+
+/*# sourceMappingURL=../js/bundle.js.map*/
