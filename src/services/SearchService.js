@@ -1,12 +1,8 @@
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { switchMap } from 'rxjs/operators/switchMap';
-import { QueryAction } from './../store/actions/query.actions';
-import { store } from './../store/store';
-import AjaxService from './ajax.service';
 import _ from 'lodash';
-import  validator from 'validator';
-
+import AjaxService from './ajax.service';
 
 let searchServiceInstace = null;
 
@@ -39,12 +35,7 @@ class SearchService {
   getResults(term)
   {
     let url = 'posts/query';
-<<<<<<< HEAD
-    term = validator.escape(term);
-    return Ajax.post(url, {query: term});
-=======
     return AjaxService.post(url, {query: term});
->>>>>>> cb754a8544aaaa2cd77aea9b7cabbd3797c28016
   }
 
   /**
@@ -56,13 +47,9 @@ class SearchService {
       switchMap(term => this.getResults(term))).subscribe(resp => 
       {
         if(resp.status == 200){
-<<<<<<< HEAD
-          this.setDataSearch(resp.data.posts);
-=======
           this.setDataSearch(resp.data.results);
         }else{
           console.log('bad request', resp);
->>>>>>> cb754a8544aaaa2cd77aea9b7cabbd3797c28016
         }
       });
   }

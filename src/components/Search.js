@@ -1,83 +1,105 @@
 import React from "react";
-import SearchService from "./../services/SearchService";
+import { withRouter } from 'react-router-dom';
+
 import { InputBase, IconButton, Paper, Button } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import { store } from "../store/store";
+
 import { QueryAction } from "../store/actions/query.actions";
 import PublicationService from '../services/publicacion.service.ts';
+import { PublicationsTypes } from "../store/types/types";
+
+import store from "../store/root.store";
 import _ from 'lodash';
 
+
 const useStyles = {
-  root: {
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-    height: "45px",
-  },
-  input: {
-    marginLeft: 10,
-    flex: 1,
-  },
-  iconButton: {
-    width: ".8em",
-    height: ".8em"
-  }
+	root: {
+		display: "flex",
+		alignItems: "center",
+		width: "100%",
+		height: "45px",
+	},
+	input: {
+		marginLeft: 10,
+		flex: 1,
+	},
+	iconButton: {
+		width: ".8em",
+		height: ".8em"
+	}
 };
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = { query: '' }
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+	store$;
 
-  componentDidMount() {
-    let query = store.getState().query;
-    this.setState( { query } );
+	constructor(props) {
+		super(props);
 
-    store.subscribe(
-      () => {
-        this.setState({ query: store.getState().query });
-      }
-    );
-  }
+		this.state = { query: '' }
+		this.onChange = this.onChange.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
+	}
 
-  onChange(e) {
-    let query = e.target.value.trim();
-    store.dispatch(QueryAction(query));
-  }
+	componentDidMount() {
+		
+		let query = store.getState().query;
 
-  onSubmit(e) {
-    e.preventDefault();
-    if(! _.isNull( this.state.query ) && !_.isEmpty( this.state.query ) )
-    {
-      PublicationService.getPublicationsWithQuery( this.state.query );
-    }
-  }
+		this.setState( { query } );
 
-  render() {
-    return (
-      <form onSubmit={this.onSubmit}>
-        <Paper style={useStyles.root}>
-          
-          <InputBase
-            placeholder="Ejemplo: Taller de electricidad"
-            onChange={this.onChange}
-            style={useStyles.input}
-            value={this.state.query}
-          />
+		this.store$ = store.subscribe(
+			() => {
+				let state = store.getState();
 
-          <IconButton type="submit">
-            <SearchIcon style={useStyles.iconButton} color="primary" />
-          </IconButton>
+				this.setState( { query: state.query } );
 
-        </Paper>
-      </form>
+				if( state.lastActionType == PublicationsTypes.ADD_PUBLICATIONS )
+				{
+					this.props.history.push(`/q/${state.query}`);
+				}
+			}
+		);
+	}
 
-    );
-  }
+	componentWillUnmount()
+	{
+		this.store$();
+	}
+
+	onChange(e) {
+		let query = e.target.value.trim();
+		store.dispatch( QueryAction( query ) );
+	}
+
+	onSubmit(e) {
+		e.preventDefault();
+		if(! _.isNull( this.state.query ) && !_.isEmpty( this.state.query ) )
+		{
+			PublicationService.getPublicationsWithQuery( this.state.query );
+		}
+	}
+
+	render() {
+		return (
+			<form onSubmit={this.onSubmit}>
+				<Paper style={useStyles.root}>
+					
+					<InputBase
+						placeholder="Ejemplo: Taller de electricidad"
+						onChange={this.onChange}
+						style={useStyles.input}
+						value={this.state.query}
+					/>
+
+					<IconButton type="submit">
+						<SearchIcon style={useStyles.iconButton} color="primary" />
+					</IconButton>
+
+				</Paper>
+			</form>
+
+		);
+	}
 }
 
-export default Search;
+export default withRouter( Search );

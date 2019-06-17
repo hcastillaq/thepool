@@ -1,8 +1,6 @@
-
-
 import AjaxService from './ajax.service';
 import { AddPublicationsAction } from './../store/actions/publication.action';
-import { store } from './../store/store';
+import store from './../store/root.store';
 
 let _publicationService : PublicationService;
 
@@ -40,7 +38,10 @@ class PublicationService {
 	{
 		AjaxService.post( this.url, { query } ).subscribe( 
 			result => {
-				store.dispatch( AddPublicationsAction(result.data.results) );
+				if( result.status == 200 )
+				{
+					store.dispatch( AddPublicationsAction(result.data.results) );
+				}
 			} 
 		);
 	}

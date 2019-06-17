@@ -1,15 +1,19 @@
 {
-  "sourceMap": true,
   "compilerOptions": {
-      "outDir": "./dist/",
-      "sourceMap": true,
-      "noImplicitAny": false,
-      "module": "commonjs",
-      "target": "es6",
-      "jsx": "react",
-      "esModuleInterop":true
+    "target": "esnext",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "noEmit": true,
+    "strict": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "noImplicitAny": true
   },
   "include": [
-      "./src/**/*"
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
   ]
 }
