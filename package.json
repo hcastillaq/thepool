@@ -1,5 +1,5 @@
 {
-	"name": "The_Pool",
+	"name": "thepool",
 	"version": "0.0.1",
 	"description": "Simple boilerplate para weback y webpack-dev-server",
 	"main": "server.js",
