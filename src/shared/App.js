@@ -6,13 +6,26 @@ import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
 
 /* Componentes */
-import Home from "./../pages/Home";
 import NewPost from "./../pages/posts/NewPost";
-import PageResult from './../pages/results.page';
+import asyncComponent from './../helpers/asyncComponent';
+
+const asyncHome =asyncComponent(() =>
+	import('./../pages/Home').then(module => module.default)
+);
+
+const asyncPageResult =asyncComponent(() =>
+	import('./../pages/results.page').then(module => module.default)
+);
 
 /* Custom Tema */
 import CustomTheme from './../theme/theme';
+
 class App extends React.Component {
+	constructor(props)
+	{
+		super(props);
+	}
+	
 	render() {
 		return (
 			<ThemeProvider theme={ CustomTheme }>
@@ -20,11 +33,11 @@ class App extends React.Component {
 					<Route
 						exact
 						path="/"
-						component={ Home }
+						component={asyncHome} 
 					/>
 					
-					<Route path="/post/new" component={ NewPost } />
-					<Route path="/q/:query" component={ PageResult } />
+					<Route path="/post/new" component={ asyncHome } />
+					<Route path="/q/:query" component={ asyncPageResult } />
 
 					<Route render={() => <h1>Not found</h1>} />
 				</Switch>

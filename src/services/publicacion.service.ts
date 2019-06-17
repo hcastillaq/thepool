@@ -1,5 +1,3 @@
-
-
 import AjaxService from './ajax.service';
 import { AddPublicationsAction } from './../store/actions/publication.action';
 import store from './../store/root.store';

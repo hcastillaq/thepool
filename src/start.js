@@ -1,6 +1,8 @@
 import Server from './server/Server';
 
 import './server/Router';
+import path from 'path';
+
 
 const init = async () => {
 
@@ -11,9 +13,11 @@ const init = async () => {
 		path: '/static/{file*}',
 		handler: {
 			directory: {
-				path: './public',
-				listing: false,
-				index: true
+				path: path.join('public'),
+				lookupCompressed: true,
+				lookupMap:{
+					gzip: '.gz',
+				}
 			}
 		}
 	});

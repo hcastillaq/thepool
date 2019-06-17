@@ -9,7 +9,7 @@ window._ = require('lodash');
 
 hydrate(
   <BrowserRouter>
-    <App initialData={window.initialData}/>
+    <App/>
   </BrowserRouter>,
   document.getElementById('root'),
 );

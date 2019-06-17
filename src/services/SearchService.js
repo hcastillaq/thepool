@@ -2,10 +2,6 @@ import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { switchMap } from 'rxjs/operators/switchMap';
 import _ from 'lodash';
-import  validator from 'validator';
-
-import { QueryAction } from './../store/actions/query.actions';
-import store from './../store/root.store';
 import AjaxService from './ajax.service';
 
 let searchServiceInstace = null;

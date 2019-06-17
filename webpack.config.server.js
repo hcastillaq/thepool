@@ -1,5 +1,5 @@
-const webpack = require('webpack');
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const serverConfig = {
 	entry: './src/start.js',
@@ -28,10 +28,14 @@ const serverConfig = {
 		]
 	},
 	plugins: [
+
 	],
+	optimization: {
+		minimizer: [new TerserPlugin()],
+	},
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx']
 	},
 };
 
-module.exports = [serverConfig]
+module.exports = serverConfig
