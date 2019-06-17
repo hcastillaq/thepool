@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import Nav from './../components/Nav';
 import PublicationItemResult from '../components/PublicationItemResult';
 import { Grid } from '@material-ui/core';
-import publicacionService from '../services/publicacion.service';
 import { Container } from '@material-ui/core';
 
 import _ from 'lodash';
@@ -16,8 +15,8 @@ class PageResult extends React.Component {
 	state: any;
 	props: any;
 	store$: any;
-	constructor(props: any) {
 
+	constructor(props: any) {
 		super(props);
 		this.state = { publications: [] };
 	}
@@ -35,8 +34,6 @@ class PageResult extends React.Component {
 				if( state.lastActionType == PublicationsTypes.ADD_PUBLICATIONS )
 				{
 					this.setPublications( state.publications );
-					
-					
 				}
 			}
 		);
@@ -49,7 +46,7 @@ class PageResult extends React.Component {
 
 	setPublications( publications: Array<any> )
 	{
-		this.setState( { publications } )
+		this.setState( { publications } );
 	}
 
 	render() {
@@ -61,11 +58,10 @@ class PageResult extends React.Component {
 						<Grid item xs={12} container spacing={1}>
 							{
 								this.state.publications.map(
-									( publication, index ) => {
+									( publication : any, index : any ) => {
 										return (
-											<Grid item xs={12}>
+											<Grid item xs={12} key={index}>
 												<PublicationItemResult
-													key={index}
 													item={publication} />
 											</Grid>
 										)

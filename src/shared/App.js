@@ -12,10 +12,6 @@ import PageResult from './../pages/results.page';
 
 /* Custom Tema */
 import CustomTheme from './../theme/theme';
-
-/* Global History */
-import history from "../helpers/history";
-
 class App extends React.Component {
 	render() {
 		return (

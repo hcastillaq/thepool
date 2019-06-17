@@ -4,7 +4,6 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 
 var clientConfig =
 {
-	mode: "development",
 	entry: "./src/index.js",
 	output: {
 		filename: 'js/bundle.js',
