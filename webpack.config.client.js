@@ -1,96 +1,55 @@
 const path = require('path');
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-const Visualizer = require('webpack-visualizer-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-var clientConfig =
-{
+module.exports = {
+	devtool: "cheap-module-source-map",
 	target: "web",
-	entry: "./src/index.js",
-	cache: false,
-	output: {
+	mode: "development",
+	entry:
+	{
+		app: "./src/index.js"
+	},
+	output:
+	{
 		filename: 'js/bundle.js',
 		path: path.resolve(__dirname, './public'),
-		publicPath: '/static/'
-		
+		publicPath: '/static/',
 	},
-	devtool: "cheap-module-source-map",
-	module: {
-		rules: [
-			{
-				test: /.js|.ts|.tsx|.jsx$/,
-				exclude: /(node_modules)/,
-				loader: "babel-loader",
-			},
-			{
-				test: /\.(sa|sc|c)ss$/,
-				exclude: /node_modules/,
-				use: [
-					MiniCSSExtractPlugin.loader,
-					"css-loader",
-					'sass-loader'
-				]
-			},
-			{
-				test: /global\.js$/,
-				exclude: /node_modules/,
-				use: ['script-loader']
-			}
-		],
+	module:
+	{
+		rules:
+			[
+				{
+					test: /\.(js|ts|tsx)$/,
+					loader: 'babel-loader',
+				},
+				{
+					test: /\.(sa|sc|c)ss$/,
+					use: [
+						 MiniCssExtractPlugin.loader,
+						"css-loader", // translates CSS into CommonJS
+						"sass-loader" // compiles Sass to CSS, using Node Sass by default
+					]
+				}
+			]
 	},
-	resolve: {
-		extensions: ['.js', '.jsx', '.ts', '.tsx']
+	resolve:
+	{
+		extensions: ['.js', '.jsx', '.tsx', '.ts', '.json']
 	},
 	plugins: [
-		new MiniCSSExtractPlugin({
+		new MiniCssExtractPlugin({
 			publicPath: '../',
 			filename: "css/bundle.css",
-		}),
-		new Visualizer({
-			filename: 'statistics.html'
-		}),
-		new CompressionPlugin({
-			filename: '[path].gz[query]',
-			algorithm: 'gzip',
-			compressionOptions: { level: 9 },
-      threshold: 10240,
-      minRatio: 1,
-      deleteOriginalAssets: false
-		}),
-		//new HardSourceWebpackPlugin(),
-		new webpack.IgnorePlugin({
-			resourceRegExp: /^\.\/locale$/,
-			contextRegExp: /moment$/
-		}),
+		})
 	],
-	optimization: {
-		minimizer: [
-			new UglifyJsPlugin({
-				parallel: true,
-				uglifyOptions: {
-					mangle: true,
-					output: {
-						comments: false,
-					},
-				},
-			}),
-		],
-	},
 	devServer: {
 		contentBase: path.join(__dirname, "public"),
+		index: './public/index.html',
+		publicPath: '/static/',
 		port: 7000,
 		compress: true,
-		hot:true,
-		injectHot:true,
-		liveReload: false,
-		index: './public/index.html',
-		publicPath: '/static/'
-	},
-}
-
-module.exports = (env, argv) => {
-	mode = argv.mode;
-	return clientConfig;
-}
+		hot: true,
+		historyApiFallback: true
+	}
+};

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
 	AppBar,
-	Toolbar,
 	Typography,
 	Grid,
 	Container,
@@ -22,7 +21,7 @@ export default class Nav extends Component {
 						 <ButtonBase>
 								<Typography variant="h5" noWrap>
 										<Link to="/" >
-												The Pool
+											Pool
 										</Link>
 								</Typography>
 						 </ButtonBase>

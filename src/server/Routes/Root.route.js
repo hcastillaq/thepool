@@ -22,6 +22,7 @@ import store from './../../store/root.store';
 
 /* Helpers */
 import { loadFunctionsPathUri } from '../helpers';
+;
 
 /**
  * Ruta principal de la aplicacion, esta se encarda de retonar
@@ -36,14 +37,12 @@ const RootRoute = async (request, h) => {
 	let uri = request.path;
 
 
-	await loadFunctionsPathUri( uri );
+	await loadFunctionsPathUri(uri);
 
 	/* Contexto general a pasar*/
 	const context = {};
 
-	/* Nos permite insetar los estilos de material ui */
 	const sheets = new ServerStyleSheets();
-
 	
 	/* Retorna un string necesario para SSR */
 	const html = renderToString(
@@ -58,16 +57,17 @@ const RootRoute = async (request, h) => {
 
 	/* Obtiene el string necesario para los estilos - Material ui*/
 	const css = sheets.toString();
-	
+
 	/* Fianl store para el client */
 	const finalState = store.getState();
+
 
 	/* Contiene los parametros necesarios para el html a servir */
 	let obj = {
 		title: 'Server test',
 		body: html,
 		css: css,
-		store: finalState
+		store: finalState,
 	}
 
 	return h.response(Html(obj));
