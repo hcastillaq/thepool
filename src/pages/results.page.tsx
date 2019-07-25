@@ -1,10 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Nav from './../components/Nav';
 import PublicationItemResult from '../components/PublicationItemResult';
 import { Grid } from '@material-ui/core';
 import { Container } from '@material-ui/core';
 
-import _ from 'lodash';
 
 /* importando store */
 import store from './../store/root.store';

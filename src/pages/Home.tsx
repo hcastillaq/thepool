@@ -6,8 +6,6 @@ import {
 } from "@material-ui/core";
 
 import SearchBar from "../components/SearchBar";
-import { PublicationsTypes } from './../store/types/types';
-import store from './../store/root.store';
 
 class Home extends React.Component 
 {
@@ -19,14 +17,6 @@ class Home extends React.Component
 	{
 		super(props);
 		this.state = { navComponent: <div>Loading nav component</div> };
-	}
-
-	componentDidMount()
-	{
-	}
-
-	componentWillUnmount()
-	{
 	}
 
 	render() 
@@ -45,7 +35,7 @@ class Home extends React.Component
 								container 
 								alignItems="center" justify="center">
 								<Typography variant="h2" component="h1" color="primary">
-									The Pool
+									Pool
 								</Typography>
 							</Grid>
 							

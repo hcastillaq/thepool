@@ -1,41 +1,38 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const serverConfig = {
-	entry: './src/start.js',
+module.exports = {
+	devtool: "cheap-module-source-map",
 	target: "node",
-	output: {
-		path: path.resolve(__dirname, './build'),
-		filename: "server.js",
+	mode: "development",
+	entry: ['@babel/polyfill', "./src/start.js"],
+	output:
+	{
+		filename: 'server.js',
+		path: path.resolve(__dirname, './bin'),
+		publicPath: '/public/',
 		libraryTarget: "commonjs2"
 	},
-	devtool: "cheap-module-source-map",
-	module: {
-		rules: [
-			{
-				test: /.js|.ts|.tsx|.jsx$/,
-				exclude: /(node_modules)/,
-				loader: "babel-loader",
-			},
-			{
-				test: /\.(sa|sc|c)ss$/,
-				exclude: /node_modules/,
-				use: [
-					"css-loader",
-					'sass-loader'
-				]
-			}
-		]
+	module:
+	{
+		rules:
+			[
+				{
+					test: /\.(js|ts|tsx)$/,
+					loader: 'babel-loader',
+				},
+				{
+					test: /\.(sa|sc|c)ss$/,
+					use: [
+						 MiniCssExtractPlugin.loader,
+						"css-loader", // translates CSS into CommonJS
+						"sass-loader" // compiles Sass to CSS, using Node Sass by default
+					]
+				}
+			]
 	},
-	plugins: [
-
-	],
-	optimization: {
-		minimizer: [new TerserPlugin()],
-	},
-	resolve: {
-		extensions: ['.js', '.jsx', '.ts', '.tsx']
-	},
-};
-
-module.exports = serverConfig
+	resolve:
+	{
+		extensions: ['.js', '.jsx', '.tsx', '.ts', '.json']
+	}
+}

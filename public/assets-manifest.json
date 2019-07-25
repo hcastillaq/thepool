@@ -1,0 +1,42 @@
+{
+  "entrypoints": [
+    "main"
+  ],
+  "origins": {
+    "main": [
+      "main"
+    ]
+  },
+  "assets": {
+    "main": {
+      "css": [
+        {
+          "file": "css/bundle.css",
+          "hash": "f0185b8428ac99083168",
+          "publicPath": "/static/css/bundle.css"
+        }
+      ],
+      "js": [
+        {
+          "file": "js/bundle.js",
+          "hash": "f0185b8428ac99083168",
+          "publicPath": "/static/js/bundle.js"
+        }
+      ],
+      "css.map": [
+        {
+          "file": "css/bundle.css.map",
+          "hash": "f0185b8428ac99083168",
+          "publicPath": "/static/css/bundle.css.map"
+        }
+      ],
+      "js.map": [
+        {
+          "file": "js/bundle.js.map",
+          "hash": "f0185b8428ac99083168",
+          "publicPath": "/static/js/bundle.js.map"
+        }
+      ]
+    }
+  }
+}
