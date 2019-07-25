@@ -1,66 +1,41 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
-const ReactLoadableSSRAddon = require('react-loadable-ssr-addon');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const serverConfig = {
-	entry: './src/start.js',
-	target: "node",
-	output: {
-		path: path.resolve(__dirname, './build'),
-		filename: "server.js",
-		libraryTarget: "commonjs2",
-	},
+module.exports = {
 	devtool: "cheap-module-source-map",
-	module: {
-		rules: [
-			{
-				test: /.js|.ts|.tsx|.jsx$/,
-				exclude: /(node_modules)/,
-				loader: "babel-loader",
-			},
-			{
-				test: /\.(sa|sc|c)ss$/,
-				exclude: /node_modules/,
-				use: [
-					"css-loader",
-					'sass-loader'
-				]
-			}
-		]
+	target: "node",
+	mode: "development",
+	entry:
+	{
+		app: ['@babel/polyfill', "./src/start.js"]
 	},
-	plugins: [
-		new ReactLoadableSSRAddon()
-	],
-	optimization: {
-		splitChunks: {
-			cacheGroups: {
-				commons: {
-					test: /[\\/]node_modules[\\/]/,
-					name: 'vendors',
-					chunks: 'all',
-					minChunks: 2,
-				},
-				default: {
-					minChunks: 2,
-					reuseExistingChunk: true,
-				},
-			},
-		},
-		minimizer: [new TerserPlugin(
-			{
-				sourceMap: true,
-				parallel: true,
-				terserOptions: {
-					output: {
-						comments: false,
-					},
-				},
-			}
-		)],
+	output:
+	{
+		filename: 'server.js',
+		path: path.resolve(__dirname, './bin'),
+		publicPath: '/public/',
+		libraryTarget: "commonjs2"
 	},
-	resolve: {
-		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
+	module:
+	{
+		rules:
+			[
+				{
+					test: /\.(js|ts|tsx)$/,
+					loader: 'babel-loader',
+				},
+				{
+					test: /\.(sa|sc|c)ss$/,
+					use: [
+						 MiniCssExtractPlugin.loader,
+						"css-loader", // translates CSS into CommonJS
+						"sass-loader" // compiles Sass to CSS, using Node Sass by default
+					]
+				}
+			]
 	},
-};
-
-module.exports = serverConfig
+	resolve:
+	{
+		extensions: ['.js', '.jsx', '.tsx', '.ts', '.json']
+	}
+}

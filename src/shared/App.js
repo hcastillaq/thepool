@@ -14,11 +14,11 @@ import CustomTheme from './../theme/theme';
 /* Pages */
 import HomePage from './../pages/Home';
 
-//import PageResult from './../pages/Results.page';
+import PageResult from './../pages/Results.page';
+// const PageResult = Async( import('./../pages/Results.page') );
 
 import Async from './../helpers/asyncComponent';
 
-const PageResult = Async( import('./../pages/Results.page') );
 
 class App extends React.Component {
 	constructor(props) {

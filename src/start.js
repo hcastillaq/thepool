@@ -13,7 +13,7 @@ const init = async () => {
 		path: '/static/{file*}',
 		handler: {
 			directory: {
-				path: path.join('public'),
+				path: path.join('../public'),
 				lookupCompressed: true,
 				lookupMap:{
 					gzip: '.gz',

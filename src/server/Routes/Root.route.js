@@ -37,7 +37,7 @@ const RootRoute = async (request, h) => {
 	let uri = request.path;
 
 
-	await loadFunctionsPathUri(uri);
+	//await loadFunctionsPathUri(uri);
 
 	/* Contexto general a pasar*/
 	const context = {};
@@ -45,7 +45,7 @@ const RootRoute = async (request, h) => {
 	const sheets = new ServerStyleSheets();
 	
 	/* Retorna un string necesario para SSR */
-	const html = renderToString(
+	const html = await renderToString(
 		sheets.collect(
 			<ThemeProvider theme={CustomTheme} >
 				<StaticRouter location={uri} context={context}>
