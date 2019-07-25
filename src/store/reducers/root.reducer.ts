@@ -3,7 +3,7 @@ import INITIALSTATE from './../models/initialstate.modes';
 
 
 
-export function RootReducer(state = INITIALSTATE, action: Action) {
+export function RootReducer(state = INITIALSTATE, action : any) {
 	switch (action.type) {
 		
 		case QueryTypes.QUERY:

@@ -6,7 +6,7 @@
 const html = (obj ) => {
 	return(
 		`
-			<!DOCTYPE html>
+			<!DOCTYPE html lang="es-ES">
 			<html>
 				<head>
 					
@@ -15,8 +15,14 @@ const html = (obj ) => {
 					<style id="jss-server-side">${obj.css}</style>
 
 					<meta name="viewport" content="width=device-width, initial-scale=1.0">
-					
-					<link rel="stylesheet" type="text/css" href="/static/css/bundle.css" async>
+
+					<link href="/static/css/bundle.css" rel="stylesheet" />
+
+					<!-- Loadable Styles -->
+					${obj.styles.map(style => {
+						return `<link href="/static/${style.file}" rel="stylesheet" />`;
+					}).join('\n')}
+
 				</head>
 
 				<body>
@@ -29,11 +35,17 @@ const html = (obj ) => {
 							'\\u003c'
 						)}
 					</script>
+					
+					<!-- Loadable Scrips -->
+					${obj.scripts.map(script => {
+						return `<script src="/static/${script.file}" async></script>`
+					}).join('\n')}
+
+					<!-- Bundle -->
+					<script src="/static/js/bundle.js" async></script>
+					
 				</body>
-
-				 
-				<script src="/static/js/bundle.js" async ></script>
-
+				
 			</html>
 		`
 	)

@@ -5,12 +5,12 @@ import { InputBase, IconButton, Paper, Button } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
 import { QueryAction } from "../store/actions/query.actions";
-import PublicationService from '../services/publicacion.service.ts';
 import { PublicationsTypes } from "../store/types/types";
+import PublicationService from '../services/publicacion.service';
 
 import store from "../store/root.store";
-import _ from 'lodash';
-
+import isNull from 'lodash/isNull';
+import isEmpty from 'lodash/isEmpty';
 
 const useStyles = {
 	root: {
@@ -73,7 +73,7 @@ class Search extends React.Component {
 
 	onSubmit(e) {
 		e.preventDefault();
-		if(! _.isNull( this.state.query ) && !_.isEmpty( this.state.query ) )
+		if(!isNull( this.state.query ) && !isEmpty( this.state.query ) )
 		{
 			PublicationService.getPublicationsWithQuery( this.state.query );
 		}

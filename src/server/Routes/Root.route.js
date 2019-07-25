@@ -3,6 +3,12 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 
+
+// import Loadable from 'react-loadable';
+// import { getBundles } from 'react-loadable-ssr-addon';
+// const manifest = require('./../../../public/react-loadable-ssr-addon.json');
+
+
 /* Import del Html a servir */
 import Html from './../Html';
 
@@ -10,10 +16,8 @@ import Html from './../Html';
 import App from './../../shared/App';
 
 /* Imports Material UI for SSR */
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
-
-/* Custom Theme*/
-import CustomTheme from './../../theme/theme';
+// import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
+// import CustomTheme from './../../theme/theme';
 
 /* Import Server*/
 import Server from './../Server';
@@ -22,6 +26,7 @@ import store from './../../store/root.store';
 
 /* Helpers */
 import { loadFunctionsPathUri } from '../helpers';
+;
 
 /**
  * Ruta principal de la aplicacion, esta se encarda de retonar
@@ -36,29 +41,49 @@ const RootRoute = async (request, h) => {
 	let uri = request.path;
 
 
-	await loadFunctionsPathUri( uri );
+	await loadFunctionsPathUri(uri);
 
 	/* Contexto general a pasar*/
 	const context = {};
 
-	/* Nos permite insetar los estilos de material ui */
-	const sheets = new ServerStyleSheets();
-
 	
 	/* Retorna un string necesario para SSR */
-	const html = renderToString(
-		sheets.collect(
-			<ThemeProvider theme={CustomTheme} >
-				<StaticRouter location={uri} context={context}>
-					<App />
-				</StaticRouter>
-			</ThemeProvider>
-		)
+
+	// const sheets = new ServerStyleSheets();
+
+	// const html = await renderToString(
+	// 	sheets.collect(
+	// 		<ThemeProvider theme={CustomTheme} >
+	// 			<StaticRouter location={uri} context={context}>
+	// 				<App />
+	// 			</StaticRouter>
+	// 		</ThemeProvider>
+	// 	)
+	// );
+
+	// const modules = new Set();
+	// const html = await renderToString(
+	// 	<Loadable.Capture report={moduleName => modules.add(moduleName)}>
+	// 		<StaticRouter location={uri} context={context}>
+	// 			<App />
+	// 		</StaticRouter>
+	// 	</Loadable.Capture>
+	// );
+
+	const html = await renderToString(
+		<StaticRouter location={uri} context={context}>
+			<App />
+		</StaticRouter>
 	);
 
-	/* Obtiene el string necesario para los estilos - Material ui*/
-	const css = sheets.toString();
+		const bundles =  {} //getBundles(manifest, [...manifest.entrypoints, ...Array.from(modules)]);
+
+		const styles = bundles.css || [];
+		const scripts = bundles.js || [];
 	
+	/* Obtiene el string necesario para los estilos - Material ui*/
+	const css = "" //sheets.toString();
+
 	/* Fianl store para el client */
 	const finalState = store.getState();
 
@@ -67,7 +92,9 @@ const RootRoute = async (request, h) => {
 		title: 'Server test',
 		body: html,
 		css: css,
-		store: finalState
+		store: finalState,
+		styles,
+		scripts
 	}
 
 	return h.response(Html(obj));

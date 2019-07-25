@@ -1,5 +1,5 @@
 import React from 'react';
-import AjaxService  from './../../services/ajax.service';
+import AjaxService  from './../../services/Ajax.service';
 
 export default class NewPost extends React.Component{
 
@@ -17,7 +17,7 @@ class NewPostForm extends React.Component{
   onSubmit(e)
   {
     let formData = new FormData(e.target);
-    AjaxService.post('posts/new', formData).subscribe( e => console.log('is heree', e) );
+    AjaxService.post('posts/new', formData).then( e => console.log('is heree', e) );
     e.preventDefault();
   }
 

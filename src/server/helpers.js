@@ -44,13 +44,13 @@ export function loadFunctionsPathUri( uri )
 			{	
 				/* Obtenemos la query y la enviamos al estado del store */
 				let query = getQueryfromUri( uri ).replace(/%20/g, ' ');
-				store.dispatch( QueryAction( query ) );
 
 				Axios.post( 'http://localhost:8000/api/posts/query', { query } )
 					.then(
 						resp=>
 						{
 							store.dispatch( AddPublicationsAction( resp.data.results ) );
+							store.dispatch( QueryAction(query) );
 							resolve();
 						}
 					)

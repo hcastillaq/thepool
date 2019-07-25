@@ -1,4 +1,4 @@
-import AjaxService from './ajax.service';
+import AjaxService from './Ajax.service';
 import { AddPublicationsAction } from './../store/actions/publication.action';
 import store from './../store/root.store';
 
@@ -36,11 +36,11 @@ class PublicationService {
 	 */
 	getPublicationsWithQuery( query: String ) : void
 	{
-		AjaxService.post( this.url, { query } ).subscribe( 
-			result => {
+		AjaxService.post( this.url, { query } ).then( 
+			(result : any) => {
 				if( result.status == 200 )
 				{
-					store.dispatch( AddPublicationsAction(result.data.results) );
+					store.dispatch( AddPublicationsAction( result.data.results ) );
 				}
 			} 
 		);

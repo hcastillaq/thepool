@@ -6,3 +6,4 @@ const Server = Hapi.server({
 });
 
 export default Server;
+
