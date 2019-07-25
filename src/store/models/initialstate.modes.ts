@@ -3,7 +3,8 @@ import { InitialStateInterface } from './../interfaces/interfaces';
 const INITIALSTATE : InitialStateInterface = {
 	query: '',
 	publications: [],
-	lastActionType: ''
+	lastActionType: '',
+	loadingPublications: false
 }
 
 export default INITIALSTATE;

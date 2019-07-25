@@ -10,3 +10,11 @@ export const AddPublicationsAction = ( publicaciones: Array<Object>) => {
 		payload: publicaciones
 	}
 };
+
+export const ActionLoadingPublications = ( state : Boolean ) => 
+{
+	return{
+		type: PublicationsTypes.LOADING_PLUBLICATIONS,
+		payload: state
+	}
+}

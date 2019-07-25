@@ -1,7 +1,8 @@
 import React from "react";
 import { withRouter } from 'react-router-dom';
 
-import { InputBase, IconButton, Paper, Button } from "@material-ui/core";
+import { InputBase, IconButton, Paper} from "@material-ui/core";
+import CircularProgress from '@material-ui/core/CircularProgress';
 import SearchIcon from "@material-ui/icons/Search";
 
 import { QueryAction } from "../store/actions/query.actions";
@@ -11,6 +12,7 @@ import PublicationService from '../services/publicacion.service';
 import store from "../store/root.store";
 import isNull from 'lodash/isNull';
 import isEmpty from 'lodash/isEmpty';
+import { ActionLoadingPublications } from "../store/actions/publication.action";
 
 const useStyles = {
 	root: {
@@ -38,7 +40,7 @@ class Search extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { query: '' }
+		this.state = { query: '', loading: false }
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 	}
@@ -54,7 +56,7 @@ class Search extends React.Component {
 				let state = store.getState();
 
 				this.setState( { query: state.query } );
-
+				this.setState( { loading: state.loadingPublications } );
 				if( state.lastActionType == PublicationsTypes.ADD_PUBLICATIONS )
 				{
 					this.props.history.push(`/q/${state.query}`);
@@ -77,10 +79,23 @@ class Search extends React.Component {
 		e.preventDefault();
 		if(!isNull( this.state.query ) && !isEmpty( this.state.query ) )
 		{
+			store.dispatch( ActionLoadingPublications( true ) );
 			PublicationService.getPublicationsWithQuery( this.state.query );
 		}
 	}
 
+	validateStateLoading()
+	{
+		if(this.state.loading)
+		{
+			return <CircularProgress 
+				style={ {marginRight:'15px'} } size={24} />;
+		}
+		return(
+		<IconButton type="submit">
+			<SearchIcon style={useStyles.iconButton} color="primary" />
+		</IconButton>);
+	}
 	render() {
 		return (
 			<form onSubmit={this.onSubmit}>
@@ -93,10 +108,7 @@ class Search extends React.Component {
 						value={this.state.query}
 					/>
 
-					<IconButton type="submit">
-						<SearchIcon style={useStyles.iconButton} color="primary" />
-					</IconButton>
-
+					{this.validateStateLoading()}
 				</Paper>
 			</form>
 

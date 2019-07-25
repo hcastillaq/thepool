@@ -19,7 +19,11 @@ export function RootReducer(state = INITIALSTATE, action : any) {
 				publications: action.payload,
 				lastActionType: PublicationsTypes.ADD_PUBLICATIONS
 			};
-
+		case PublicationsTypes.LOADING_PLUBLICATIONS:
+			return {
+				...state,
+				loadingPublications: action.payload
+			}
 		default:
 			return state;
 	}

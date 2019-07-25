@@ -6,5 +6,6 @@ export interface ActionInterface {
 export interface InitialStateInterface {
 	query: String,
 	publications: Array<Object>,
-	lastActionType: String
+	lastActionType: String,
+	loadingPublications: Boolean
 }

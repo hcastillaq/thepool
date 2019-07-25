@@ -38,7 +38,7 @@ export default class Nav extends React.Component <any, any>{
 			this.setState( {
 				Title: (
 					<div className="nav__content__item nav__content--title">
-						<Typography variant="h6">
+						<Typography variant="h4">
 							<Link to="/">
 								{APPTITLE}
 							</Link>

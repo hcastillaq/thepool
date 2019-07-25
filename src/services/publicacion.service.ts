@@ -1,5 +1,5 @@
 import AjaxService from './Ajax.service';
-import { AddPublicationsAction } from './../store/actions/publication.action';
+import { AddPublicationsAction, ActionLoadingPublications } from './../store/actions/publication.action';
 import store from './../store/root.store';
 
 let _publicationService : PublicationService;
@@ -42,6 +42,7 @@ class PublicationService {
 				{
 					store.dispatch( AddPublicationsAction( result.data.results ) );
 				}
+				store.dispatch( ActionLoadingPublications( false ) );
 			} 
 		);
 	}
