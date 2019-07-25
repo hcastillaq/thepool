@@ -6,14 +6,19 @@ import { Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
 
 /* Componentes */
-import NewPost from "./../pages/posts/NewPost";
+const NewPost = Async( import('./../pages/posts/NewPost') );
 
 /* Custom Tema */
 import CustomTheme from './../theme/theme';
 
 /* Pages */
 import HomePage from './../pages/Home';
-import PageResult from './../pages/Results.page';
+
+//import PageResult from './../pages/Results.page';
+
+import Async from './../helpers/asyncComponent';
+
+const PageResult = Async( import('./../pages/Results.page') );
 
 class App extends React.Component {
 	constructor(props) {
