@@ -18,6 +18,8 @@ const useStyles = {
 		alignItems: "center",
 		width: "100%",
 		height: "45px",
+		borderRadius: "2.6em",
+		paddingLeft: '10px'
 	},
 	input: {
 		marginLeft: 10,

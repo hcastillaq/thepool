@@ -1,19 +1,19 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "moduleResolution": "node",
-    "allowJs": true,
-    "noEmit": true,
-    "strict": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "jsx": "react",
-    "noImplicitAny": true
-  },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-  ]
+	"compilerOptions": {
+		"target": "esnext",
+		"moduleResolution": "node",
+		"allowJs": true,
+		"noEmit": true,
+		"strict": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"jsx": "react",
+		"noImplicitAny": false
+	},
+	"include": [
+		"src"
+	],
+	"exclude": [
+		"node_modules",
+	]
 }

@@ -5,6 +5,7 @@
 *
 	font-family: EncondeSansCondesed, sans-serif, Arial, Helvetica !important
 	margin: 0px
+
 a
 	text-decoration: none
 	color: white
@@ -13,12 +14,27 @@ a
 .page__home
 	background-color: #efefef !important
 	height: 100vh
-
 	.page__home__content
-		height: 85vh
-
+		padding-top: 30vh
 
 .page_results
-	margin-top: 60px
 	.page_results__content
 		margin-top: 20px
+
+.nav
+	&.nav--home
+		background: transparent !important
+		box-shadow:  none !important
+		color: black !important
+	.nav__content
+		display: flex
+		flex-direction: row
+	.nav__content__item
+		margin-right: 2vw
+		&:last-of-type
+			padding: 0px
+			margin: 0px
+			margin-left: auto
+		&.nav__content--title
+		&.nav__content__item--search-bar
+			width: 40vw

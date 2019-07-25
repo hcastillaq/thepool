@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core";
 
 import SearchBar from "../components/SearchBar";
+import Nav from './../components/Nav';
 
 class Home extends React.Component 
 {
@@ -23,6 +24,7 @@ class Home extends React.Component
 	{
 		return (
 			<div className="page page__home">
+				<Nav  home={ true }/>
 				<Container maxWidth="sm" >
 					<Grid container 
 					justify="center" 

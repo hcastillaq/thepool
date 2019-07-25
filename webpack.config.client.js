@@ -50,7 +50,6 @@ module.exports = {
 		publicPath: '/static/',
 		port: 7000,
 		compress: true,
-		hot: true,
 		historyApiFallback: true
 	},
 	optimization: {
