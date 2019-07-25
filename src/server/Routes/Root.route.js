@@ -10,10 +10,10 @@ import Html from './../Html';
 import App from './../../shared/App';
 
 /* Imports Material UI for SSR */
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
+// import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
 
 /* Custom Theme*/
-import CustomTheme from './../../theme/theme';
+// import CustomTheme from './../../theme/theme';
 
 /* Import Server*/
 import Server from './../Server';
@@ -37,26 +37,33 @@ const RootRoute = async (request, h) => {
 	let uri = request.path;
 
 
-	//await loadFunctionsPathUri(uri);
+	await loadFunctionsPathUri(uri);
 
 	/* Contexto general a pasar*/
 	const context = {};
 
-	const sheets = new ServerStyleSheets();
+	// const sheets = new ServerStyleSheets();
 	
 	/* Retorna un string necesario para SSR */
+	// const html = await renderToString(
+	// 	sheets.collect(
+	// 		<ThemeProvider theme={CustomTheme} >
+	// 			<StaticRouter location={uri} context={context}>
+	// 				<App />
+	// 			</StaticRouter>
+	// 		</ThemeProvider>
+	// 	)
+	// );
+
 	const html = await renderToString(
-		sheets.collect(
-			<ThemeProvider theme={CustomTheme} >
-				<StaticRouter location={uri} context={context}>
-					<App />
-				</StaticRouter>
-			</ThemeProvider>
-		)
+		<StaticRouter location={uri} context={context}>
+			<App />
+		</StaticRouter>
 	);
 
 	/* Obtiene el string necesario para los estilos - Material ui*/
-	const css = sheets.toString();
+	// const css = sheets.toString();
+	const css = "";
 
 	/* Fianl store para el client */
 	const finalState = store.getState();

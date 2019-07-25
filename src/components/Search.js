@@ -36,7 +36,7 @@ class Search extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { query: '' }
+		this.state = { query: store.getState().query }
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 	}

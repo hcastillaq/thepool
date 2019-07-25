@@ -28,7 +28,6 @@ const html = (obj ) => {
 							'\\u003c'
 						)}
 					</script>
-					
 				</body>
 				
 			</html>
