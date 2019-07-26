@@ -89,7 +89,7 @@ class Search extends React.Component {
 		if(this.state.loading)
 		{
 			return <CircularProgress 
-				style={ {marginRight:'15px'} } size={24} />;
+				style={ {marginRight:'15px'} } size={20} />;
 		}
 		return(
 		<IconButton type="submit">

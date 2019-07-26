@@ -12,7 +12,7 @@ a
 
 
 .page__home
-	background-color: #efefef !important
+	background-color: #f3f3f3 !important
 	height: 100vh
 	.page__home__content
 		padding-top: 30vh
@@ -20,6 +20,18 @@ a
 .page_results
 	.page_results__content
 		margin-top: 20px
+	.page_results__content__about
+		margin-bottom: 20px
+		background: white
+		border-radius: 2.6em
+		box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1)
+		width: fit-content
+		height: 35px
+		padding: 0px 20px
+		display: flex
+		align-items: center
+		color: #777
+		font-size: .9em
 
 .nav
 	&.nav--home
@@ -38,3 +50,5 @@ a
 		&.nav__content--title
 		&.nav__content__item--search-bar
 			width: 40vw
+
+@import './components/PublicationItem.sass';

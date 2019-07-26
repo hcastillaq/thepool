@@ -8,9 +8,6 @@ import {
 	Button,
 } from "@material-ui/core";
 
-
-import { makeStyles } from '@material-ui/styles';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import { Link } from 'react-router-dom';
 import SearchBar from "./SearchBar";
 import { APPTITLE } from './../config/config';

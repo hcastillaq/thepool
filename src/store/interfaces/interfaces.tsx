@@ -8,4 +8,7 @@ export interface InitialStateInterface {
 	publications: Array<Object>,
 	lastActionType: String,
 	loadingPublications: Boolean
+	publicationsLimit: Array<Object>,
+	startPLimit: Number,
+	endPLimit: Number,
 }
