@@ -3,11 +3,10 @@ import { InitialStateInterface } from './../interfaces/interfaces';
 const INITIALSTATE : InitialStateInterface = {
 	query: '',
 	publications: [],
-	publicationsLimit: [],
 	lastActionType: '',
 	loadingPublications: false,
-	startPLimit: 0,
-	endPLimit: 10
+	pageFactor: 10,
+	pageNumber: 1
 }
 
 export default INITIALSTATE;

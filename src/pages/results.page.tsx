@@ -13,6 +13,7 @@ import store from './../store/root.store';
 import { PublicationsTypes, QueryTypes } from '../store/types/types';
 import { PublicationModel } from '../store/models/publication.model';
 
+import Pagination from './../components/Pagination';
 
 function ElevationScroll(props: any) {
 	const { children, window } = props;
@@ -44,19 +45,26 @@ class PageResult extends React.Component {
 
 	constructor(props: any) {
 		super(props);
-		this.state = { publications: [], publicationsComponents: [] };
+		this.state = { publications: [], numPublications: 0 };
 	}
 
 	componentWillMount() {
-		this.setPublications(store.getState().publications);
+		let state = store.getState();
+		this.setPublications(
+			state.publications.slice(state.startPLimit, state.endPLimit));
 	}
 
 	componentDidMount() {
 		this.store$ = store.subscribe(
 			() => {
 				let state = store.getState();
-				if (state.lastActionType == PublicationsTypes.ADD_PUBLICATIONS) {
-					this.setPublications(state.publications);
+				if (state.lastActionType == PublicationsTypes.ADD_PUBLICATIONS 
+						|| state.lastActionType == PublicationsTypes.CHANGE_PAGE_NUMBER) {
+					let end = state.pageNumber * state.pageFactor;
+					let start = (state.pageNumber - 1) * state.pageFactor;
+					this.setPublications(
+							state.publications.slice(start, end));
+					this.setState( {numPublications : state.publications.length} )
 				}
 			}
 		);
@@ -71,7 +79,6 @@ class PageResult extends React.Component {
 	}
 	
 	viewResults() {
-		let state = store.getState();
 		if( this.state.publications.length == 0 )
 		{
 			return(
@@ -82,7 +89,7 @@ class PageResult extends React.Component {
 					</Typography>
 					
 					<Typography variant="h5" component="span">
-						Taller de Electricidad  {/* { state.query } */}	 
+							{ store.getState().query } 
 					</Typography>
 					<Typography variant="h5">
 						:(
@@ -96,14 +103,14 @@ class PageResult extends React.Component {
 				<Grid item xs={12} container>
 					<div className="page_results__content__about">
 						<span>
-							Cerca de {this.state.publications.length}  resultados
+							Cerca de {this.state.numPublications}  resultados
 				</span>
 					</div>
 				</Grid>
 
 				<Grid item xs={6} container>
 					{
-						state.publicationsLimit.map(
+						this.state.publications.map(
 								(publication: any, index: any) => {
 									return (
 										<Grid item xs={12} key={index}>
@@ -114,6 +121,10 @@ class PageResult extends React.Component {
 								}
 							)
 					}
+				</Grid>
+
+				<Grid item xs={6}>
+					<Pagination />
 				</Grid>
 			</div>
 		)
