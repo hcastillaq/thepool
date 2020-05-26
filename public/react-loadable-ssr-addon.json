@@ -12,28 +12,28 @@
       "css": [
         {
           "file": "css/bundle.css",
-          "hash": "1fa30273dad121f3834a",
+          "hash": "5b2b2e0019f4f0bed605",
           "publicPath": "/static/css/bundle.css"
         }
       ],
       "js": [
         {
           "file": "js/bundle.js",
-          "hash": "1fa30273dad121f3834a",
+          "hash": "5b2b2e0019f4f0bed605",
           "publicPath": "/static/js/bundle.js"
         }
       ],
       "css.map": [
         {
           "file": "css/bundle.css.map",
-          "hash": "1fa30273dad121f3834a",
+          "hash": "5b2b2e0019f4f0bed605",
           "publicPath": "/static/css/bundle.css.map"
         }
       ],
       "js.map": [
         {
           "file": "js/bundle.js.map",
-          "hash": "1fa30273dad121f3834a",
+          "hash": "5b2b2e0019f4f0bed605",
           "publicPath": "/static/js/bundle.js.map"
         }
       ]

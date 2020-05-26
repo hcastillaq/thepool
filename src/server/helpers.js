@@ -19,7 +19,7 @@ export function whatIsUrlPath ( uri )
 }
 
 /**
- * Retorna el parametro de busqueda ingresado por el usuario
+ * Retorna el parámetro de búsqueda ingresado por el usuario
  * @param {String} uri 
  */
 export function getQueryfromUri( uri )
@@ -29,8 +29,8 @@ export function getQueryfromUri( uri )
 }
 
 /**
- * Funcion que se encarga de ejucutar todos los escripts necesarios
- * en el SSR, esta apoyada por otras funciones, tambien hace las
+ * Función que se encarga de ejecutar todos los scripts necesarios
+ * en el SSR, esta apoyada por otras funciones, también hace las
  * consultas necesarias para los datos iniciales del store
  * @param {String} uri  url consultada por el usuario
  */
