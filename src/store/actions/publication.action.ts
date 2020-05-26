@@ -18,3 +18,11 @@ export const ActionLoadingPublications = ( state : Boolean ) =>
 		payload: state
 	}
 }
+
+export const ActionChangePageNumber = ( pageNumber : Number ) => 
+{
+	return{
+		type: PublicationsTypes.CHANGE_PAGE_NUMBER,
+		payload: pageNumber
+	}
+}

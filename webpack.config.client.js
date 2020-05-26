@@ -6,7 +6,7 @@ module.exports = {
 	devtool: "cheap-module-source-map",
 	target: "web",
 	mode: "development",
-	entry: "./src/index.js",
+	entry: ["@babel/polyfill","./src/index.js"],
 	output:
 	{
 		filename: 'js/bundle.js',

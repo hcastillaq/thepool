@@ -4,7 +4,9 @@ const INITIALSTATE : InitialStateInterface = {
 	query: '',
 	publications: [],
 	lastActionType: '',
-	loadingPublications: false
+	loadingPublications: false,
+	pageFactor: 10,
+	pageNumber: 1
 }
 
 export default INITIALSTATE;

@@ -71,8 +71,8 @@ class Search extends React.Component {
 	}
 
 	onChange(e) {
-		let query = e.target.value.trim();
-		store.dispatch( QueryAction( query ) );
+		let query = e.target.value;
+		store.dispatch( QueryAction( query) );
 	}
 
 	onSubmit(e) {
@@ -80,7 +80,7 @@ class Search extends React.Component {
 		if(!isNull( this.state.query ) && !isEmpty( this.state.query ) )
 		{
 			store.dispatch( ActionLoadingPublications( true ) );
-			PublicationService.getPublicationsWithQuery( this.state.query );
+			PublicationService.getPublicationsWithQuery( this.state.query.trim() );
 		}
 	}
 
@@ -89,7 +89,7 @@ class Search extends React.Component {
 		if(this.state.loading)
 		{
 			return <CircularProgress 
-				style={ {marginRight:'15px'} } size={24} />;
+				style={ {marginRight:'15px'} } size={20} />;
 		}
 		return(
 		<IconButton type="submit">

@@ -8,4 +8,6 @@ export interface InitialStateInterface {
 	publications: Array<Object>,
 	lastActionType: String,
 	loadingPublications: Boolean
+	pageFactor: Number,
+	pageNumber: Number,
 }
