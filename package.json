@@ -14,7 +14,7 @@
 	"author": "Hernan Castilla",
 	"license": "ISC",
 	"dependencies": {
-		"@hapi/hapi": "^18.3.1",
+		"@hapi/hapi": "^18.4.1",
 		"@hapi/inert": "^5.2.1",
 		"@material-ui/core": "^4.2.1",
 		"@material-ui/icons": "^4.2.1",
@@ -35,7 +35,7 @@
 		"babel-loader": "^8.0.6",
 		"css-loader": "^3.1.0",
 		"mini-css-extract-plugin": "^0.8.0",
-		"node-sass": "^4.12.0",
+		"node-sass": "^4.14.1",
 		"react-loadable": "^5.5.0",
 		"react-loadable-ssr-addon": "^0.1.9",
 		"redux-devtools-extension": "^2.13.8",
@@ -44,6 +44,6 @@
 		"typescript": "^3.5.3",
 		"webpack": "^4.37.0",
 		"webpack-cli": "^3.3.6",
-		"webpack-dev-server": "^3.7.2"
+		"webpack-dev-server": "^3.11.0"
 	}
 }
